@@ -1,0 +1,9 @@
+# Environments
+.env
+.venv
+
+# Python caches
+__pycache__/
+
+# Others
+.chainlit/

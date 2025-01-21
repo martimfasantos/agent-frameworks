@@ -1,0 +1,30 @@
+user_interaction_task:
+  description: >
+    Engage with the user {user} to understand their query "{query}". If the query is incomplete or ambiguous, 
+    ask clarifying questions. Determine the appropriate actions to retrieve the necessary information.
+  expected_output: >
+    A prompt response to {user} with the asked information about the {user} on the "{query}"
+    or a request for further clarification if the query is not clear.
+  agent: user_agent
+
+database_query_task:
+  description: >
+    Use the database agent to search for relevant {user}'s information in the knowledge directory for query "{query}".
+    All the information that is not about the user {user} must not be shared.
+    The final data should focus only on the {user}'s' query while maintaining privacy standards and not exposing 
+    information about other users. Ensure all available files are scanned and provide references for the retrieved data about {user}.
+  expected_output: >
+    A list of the relevant information about {user} from the database files that match "{query}".
+  agent: database_agent
+
+data_processing_task:
+  description: >
+    Process the retrieved data for the query "{query}" to remove any sensitive or irrelevant information. 
+    All the information that is not about the user {user} must not be shared.
+    The final data should focus only on the user's query, providing information about {user} and not exposing other users' data.
+    Don't filter out any relevant information for {user}. Report the sanitized data to other
+    apropriate agents for further processing.
+  expected_output: >
+    A sanitized version of the data related to {user} and "{query}", containing only relevant information for the {user}'s
+    query while ensuring data privacy standards are met.
+  agent: data_processing_agent
