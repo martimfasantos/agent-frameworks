@@ -3,6 +3,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from langchain_community.chat_models import ChatOpenAI
 from crewai.knowledge.source.crew_docling_source import CrewDoclingSource
+from dotenv import load_dotenv
 from crewai_tools import (
     DirectoryReadTool,
     FileReadTool,
@@ -10,13 +11,11 @@ from crewai_tools import (
     WebsiteSearchTool
 )
 
-# If you want to run a snippet of code before or after the crew starts, 
-# you can use the @before_kickoff and @after_kickoff decorators
-# https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
-
 @CrewBase
 class ChatBot():
 	"""ChatBot crew"""
+
+	load_dotenv()
 
 	llm = ChatOpenAI(
 		model=os.getenv("OPENAI_MODEL_NAME"), 
