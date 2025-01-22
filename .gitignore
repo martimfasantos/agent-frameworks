@@ -4,6 +4,8 @@
 
 # Python caches
 __pycache__/
+.cache
 
 # Others
 .chainlit/
+tmp

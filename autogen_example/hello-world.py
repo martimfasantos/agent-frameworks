@@ -7,12 +7,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-async def main() -> None:
+async def main():
     agent = AssistantAgent(
             name = "assistant", 
             model_client=OpenAIChatCompletionClient(model=os.getenv("OPENAI_MODEL_NAME"))
         )
     result = await agent.run(task="Say 'Hello World!'")
-    print(result)
+    print(result.messages[1].content)
 
 asyncio.run(main())
