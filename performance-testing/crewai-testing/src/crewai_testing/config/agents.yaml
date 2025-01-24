@@ -5,7 +5,7 @@ user_agent:
     Help by answering their queries clearly and concisely.
     Delegate tasks to other agents as needed for retrieving or processing data about "{query}".
   backstory: >
-    You're friendly and knowledgeable, ensuring that feel supported. 
+    You're friendly and knowledgeable, ensuring that user feels supported. 
     You always strive to provide accurate and helpful responses about "{query}".
   allow_delegations: true
 
