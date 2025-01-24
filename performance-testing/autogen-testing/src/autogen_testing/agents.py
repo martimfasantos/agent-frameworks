@@ -3,8 +3,9 @@ from autogen_agentchat.agents import (
     BaseChatAgent, 
     UserProxyAgent,
     AssistantAgent,
+    
 )
-from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
+from autogen_testing.tools.geometric_mean_tool import GeometricMeanTool
 
 agent_logger = getLogger("agent")
 
@@ -28,8 +29,6 @@ def create_agents(llm_config: dict, model: str) -> list[BaseChatAgent]:
         name="Customer Support Agent",
         description=user_agent_message,
         is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
-        human_input_mode="NEVER",
-        code_execution_config=False,  # we don't want to execute code in this case.
         system_message=user_agent_message,
     )
 
@@ -47,22 +46,11 @@ def create_agents(llm_config: dict, model: str) -> list[BaseChatAgent]:
     '''
 
     agent_logger.info("Creating Database Agent...")
-    database_agent = RetrieveUserProxyAgent(
+    database_agent = AssistantAgent(
         name="Database Access Agent",
         description=database_agent_message,
+        tools=[], # TODO add Tool to search and retrieve data from database -> What tool?
         is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
-        human_input_mode="NEVER",
-        max_consecutive_auto_reply=5,
-        retrieve_config={
-            "task": "default",
-            "docs_path": "./knowledge",
-            "vector_db": "chroma",
-            "collection_name": "groupchat",
-            # "client": chromadb.PersistentClient(path="/tmp/chromadb"),
-            "model": model,
-            "get_or_create": True,
-        },
-        code_execution_config=False,  # we don't want to execute code in this case.
         system_message=database_agent_message,
     )
 
@@ -83,8 +71,8 @@ def create_agents(llm_config: dict, model: str) -> list[BaseChatAgent]:
     data_processing_agent = AssistantAgent(
         name="Data Processing Agent",
         description=dp_agent_message,
+        tools=[GeometricMeanTool()],
         is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
-        human_input_mode="NEVER",
         llm_config=llm_config,
         system_message=dp_agent_message,
     )

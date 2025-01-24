@@ -1,4 +1,3 @@
-import os
 import time
 import logging
 import asyncio
@@ -8,13 +7,9 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from autogen_agentchat.teams import (
     SelectorGroupChat,
-    GroupChatManager,
 )
-from .agents import create_agents
-from dotenv import load_dotenv
-from .settings import settings
-
-load_dotenv()
+from autogen_testing.agents import create_agents
+from autogen_testing.settings import settings
 
 # set logger and root logger config level
 # nice to see the bot "thinking" on the logs
@@ -47,16 +42,11 @@ user_agent = agents[0] # hardcoded: user agent is the first one in the list
 # for agent in agents:
 #     agent.clear_memory()
 
-groupchat = SelectorGroupChat(
-    agents=agents,
-    messages=[], 
+groupchat = SelectorGroupChat(     # this GroupChat only allows for ChatAgents. Some operations
+    agents=agents,                 # might be after if we use other types of agents.
+    messages=[],                   # e.g. ToolAgent, to execute tool calls.
     max_round=5, 
     speaker_selection_method="auto",
-)
-
-manager = GroupChatManager(
-    groupchat=groupchat,
-    llm_config=llm_config,
 )
 
 # ----------------------------------------------
@@ -75,19 +65,11 @@ async def query_agent(request: QueryRequest):
     """
     Handle incoming chat requests asynchronously.
     """
-    query = request.query
+    queries = request.query
     times = []
     for i in range(settings.num_iterations):
         start = time.time()
-        response = await user_agent.a_initiate_chats(
-            [
-                {
-                    "recipient": "user_agent",
-                    "message": "This is the user's input query: " + query,
-                } 
-                for query in query
-            ],
-        )
+        results = await asyncio.gather(*(groupchat.run(query) for query in queries))
         times.append(time.time() - start)
         
         if i < settings.num_iterations-1: 
@@ -111,7 +93,7 @@ async def query_agent(request: QueryRequest):
     # 50 inputs - ?? # not able to run given the token limit
     # 100 inputs - ?? # not able to run given the token limit
 
-    return JSONResponse(content={"response": [r.raw for r in response]})
+    return JSONResponse(content={"response": [r.messages[-1] for r in results]})
 
 
 async def serve():
