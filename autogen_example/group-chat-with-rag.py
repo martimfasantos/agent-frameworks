@@ -146,8 +146,7 @@ def rag_chat():
     # Start chatting with boss_aid as this is the user proxy agent.
     boss_aid.initiate_chat(
         manager,
-        problem=PROBLEM,
-        message=boss_aid.message_generator,
+        message=PROBLEM,
         n_results=3,
     )
 
