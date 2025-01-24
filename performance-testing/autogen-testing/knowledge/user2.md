@@ -1,0 +1,2 @@
+User 2: Jane Smith
+Jane Smith is a Data Scientist from Berlin, Germany. She has a PhD in Data Science and works in the field of machine learning and data analytics, with 5 years of experience in e-commerce analytics. Jane earns €120,000 annually and is skilled in Python and R, often using frameworks like Scikit-learn and Keras in her projects. In her free time, she enjoys photography and reading.
