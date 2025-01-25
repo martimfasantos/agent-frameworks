@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "martimfasantos", email = "martimfasantos@gmail.com"},
 ]
-dependencies = ["fastapi>=0.115.7", "autogen>=0.1.1", "autogen-agentchat>=0.4.3", "autogen-core>=0.4.3", "uvicorn>=0.34.0", "numpy>=2.2.2", "tiktoken>=0.8.0", "pydantic-settings>=2.7.1"]
+dependencies = ["fastapi>=0.115.7", "autogen>=0.1.1", "autogen-agentchat>=0.4.3", "autogen-core>=0.4.3", "uvicorn>=0.34.0", "numpy>=2.2.2", "tiktoken>=0.8.0", "pydantic-settings>=2.7.1", "autogen-ext[openai]>=0.4.3"]
 requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
