@@ -67,7 +67,6 @@ def create_agents(model_client: str) -> list[BaseChatAgent]:
         > Task: Process and transform the retrieved data for the user's input query to ensure it satisfies the user's needs. 
         Upon completion, report the result to the appropriate downstream agents for further processing.
         Expected Output: The processed data needed to respond to the user's query in a clear, concise, and relevant manner.
-        Reply with TERMINATE when the task has been completed.
     '''
 
     agent_logger.info("Creating Data Processing Agent...")    
