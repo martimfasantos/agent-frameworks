@@ -30,7 +30,7 @@ class GeometricMeanTool2(BaseTool[GeometricMeanArgs, GeometricMeanResult]):
         super().__init__(
             args_type=GeometricMeanArgs,
             return_type=GeometricMeanResult,
-            name="Geometric Mean Tool",
+            name="Geometric_Mean_Tool",
             description="Calculates the geometric mean of a list of numbers.",
         )
 

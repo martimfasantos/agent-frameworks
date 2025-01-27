@@ -1,4 +1,6 @@
+from itertools import tee
 from logging import getLogger
+from pyexpat import model
 from autogen_agentchat.agents import (
     BaseChatAgent, 
     UserProxyAgent,
@@ -6,11 +8,20 @@ from autogen_agentchat.agents import (
     
 )
 from autogen_testing.tools.geometric_mean_tool import GeometricMeanTool
+from autogen_testing.tools.knowledge_base_search_tool import KnowledgeBaseSearchTool
+from llama_index.core import VectorStoreIndex
+from llama_index.core.tools import FunctionTool, RetrieverTool, ToolMetadata
+from llama_index.llms.openai import OpenAI
+from autogen_testing.settings import settings
+from autogen_testing.custom_agent import DatabaseRetriever
+from llama_index.core.agent import ReActAgent
+
+
 
 agent_logger = getLogger("agent")
 
 
-def create_agents(model_client: str) -> list[BaseChatAgent]:
+def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAgent]:
     user_agent_message = '''
         You are a Customer Support Agent.
         > Goal: Help by answering their queries clearly and concisely.
@@ -47,14 +58,39 @@ def create_agents(model_client: str) -> list[BaseChatAgent]:
         and no others actions should be executed.
     '''
 
+    # add the in memory knowledge base as a tool
+    knowledge_tool = RetrieverTool(
+        retriever=index.as_retriever(llm=model_client),
+        metadata=ToolMetadata(
+            name="knowledge",
+            description="A tool to retrieve knowledge about",
+        ),
+    )
+
+    database_helper_agent = ReActAgent.from_tools(
+        tools=[knowledge_tool],
+        llm=OpenAI(
+            model=settings.openai_model_name,
+            api_key=settings.openai_api_key.get_secret_value(),
+            temperature=settings.temperature,
+            max_tokens=settings.max_tokens,
+        ),
+    )
+
     agent_logger.info("Creating Database Agent...")
     database_agent = AssistantAgent(
         name="Database_Access_Agent",
         description=database_agent_message,
         model_client=model_client,
-        tools=[], # TODO add Tool to search and retrieve data from database -> What tool?
+        tools=[KnowledgeBaseSearchTool(database_helper_agent)],
         system_message=database_agent_message,
     )
+    # database_agent = DatabaseRetriever(
+    #     name="Database_Access_Agent",
+    #     description=database_agent_message,
+    #     react_agent=user_agent,
+    #     system_message=database_agent_message,
+    # )
 
     dp_agent_message = '''
         You are a Data Processing Agent.

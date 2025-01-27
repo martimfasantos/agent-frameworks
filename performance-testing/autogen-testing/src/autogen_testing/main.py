@@ -14,10 +14,11 @@ from autogen_agentchat.teams import (
     MagenticOneGroupChat,
 )
 from autogen_agentchat.ui import Console
+from autogen_testing.loader import load_documents_from_folder
 from autogen_testing.agents import create_agents
+from autogen_testing.index import create_index
 from autogen_testing.settings import settings
 from autogen_ext.models.openai import OpenAIChatCompletionClient
-from autogen_core import CancellationToken
 from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
 
 # logging.basicConfig(level=logging.INFO)
@@ -34,8 +35,14 @@ model_client = OpenAIChatCompletionClient(
                     max_tokens=settings.max_tokens,
                 )
 
+# Load the documents
+documents = load_documents_from_folder(settings.docs_path)
+
+# Create the index
+index = create_index(documents)
+
 # Create the agents
-agents = create_agents(model_client)
+agents = create_agents(model_client, index)
 user_agent = agents[0] # hardcoded: user agent is the first one in the list
 
 groupchat = SelectorGroupChat(     # this GroupChat only allows for ChatAgents. Some operations
