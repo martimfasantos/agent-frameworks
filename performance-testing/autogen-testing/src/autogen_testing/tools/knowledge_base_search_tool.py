@@ -18,15 +18,23 @@ class KnowledgeBaseSearchResult(BaseModel):
 
 
 class KnowledgeBaseSearchTool(BaseTool[KnowledgeBaseSearchArgs, KnowledgeBaseSearchResult]):
-    def __init__(self, agent: ReActAgent) -> None:
+    def __init__(self, knowledge_tool: RetrieverTool) -> None:
         super().__init__(
             args_type=KnowledgeBaseSearchArgs,
             return_type=KnowledgeBaseSearchResult,
             name="Knowledge_Base_Search_Tool",
             description="Searches a knowledge/data base for relevant information.",
         )
-        self._react_agent = agent
+        self._knowledge_tool = knowledge_tool
 
     async def run(self, args: KnowledgeBaseSearchArgs, cancellation_token: CancellationToken) -> KnowledgeBaseSearchResult:
-        result = await self._react_agent.achat(args.query)
+        result = await ReActAgent.from_tools(
+            tools=[self._knowledge_tool],
+            llm=OpenAI(
+                model=settings.openai_model_name,
+                api_key=settings.openai_api_key.get_secret_value(),
+                temperature=settings.temperature,
+                max_tokens=settings.max_tokens,
+            ),
+        ).achat(args.query)
         return KnowledgeBaseSearchResult(response=result.response)

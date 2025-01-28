@@ -1,4 +1,3 @@
-from itertools import tee
 from logging import getLogger
 from pyexpat import model
 from autogen_agentchat.agents import (
@@ -67,22 +66,12 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
         ),
     )
 
-    database_helper_agent = ReActAgent.from_tools(
-        tools=[knowledge_tool],
-        llm=OpenAI(
-            model=settings.openai_model_name,
-            api_key=settings.openai_api_key.get_secret_value(),
-            temperature=settings.temperature,
-            max_tokens=settings.max_tokens,
-        ),
-    )
-
     agent_logger.info("Creating Database Agent...")
     database_agent = AssistantAgent(
         name="Database_Access_Agent",
         description=database_agent_message,
         model_client=model_client,
-        tools=[KnowledgeBaseSearchTool(database_helper_agent)],
+        tools=[KnowledgeBaseSearchTool(knowledge_tool)],
         system_message=database_agent_message,
     )
     # database_agent = DatabaseRetriever(
