@@ -1,9 +1,9 @@
-from ast import main
-from statistics import stdev
+import sys
 import time
 import logging
 import asyncio
 import asyncio.log
+from statistics import stdev
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -21,8 +21,15 @@ from autogen_testing.settings import settings
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from autogen_agentchat.conditions import MaxMessageTermination, TextMentionTermination
 
-# logging.basicConfig(level=logging.INFO)
-# logging.getLogger().setLevel(logging.INFO)
+logging.basicConfig(level=logging.INFO) 
+logging.getLogger().setLevel(logging.INFO)
+
+# remove all unnecessary logs
+logging.getLogger("autogen_core").setLevel(logging.WARNING)
+logging.getLogger("autogen.events").setLevel(logging.WARNING)
+logging.getLogger("autogen_agentchat.events").setLevel(logging.WARNING)
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
 
 main_logger = logging.getLogger("main")
 main_logger.debug("Debug Mode Active")
@@ -130,6 +137,23 @@ async def serve():
     await server.serve()
 
 
+async def streamlit_chat():
+    import streamlit as st
+
+    with st.chat_message("user"):
+        st.write("Hello!")
+
+    prompt = st.chat_input("Say something")
+    if prompt:
+        result = await groupchat.run(task=prompt)
+        st.write("Agent: ", result.messages[-1])
+
+
+
 if __name__ == "__main__":
-    # launch uvicorn and serve
-    asyncio.run(serve())
+
+    if sys.argv[1] and sys.argv[1] == "chat":
+        asyncio.run(streamlit_chat())
+    else:
+        # launch uvicorn and serve
+        asyncio.run(serve())
