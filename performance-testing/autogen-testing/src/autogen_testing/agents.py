@@ -12,7 +12,7 @@ from llama_index.core import VectorStoreIndex
 from llama_index.core.tools import FunctionTool, RetrieverTool, ToolMetadata
 from llama_index.llms.openai import OpenAI
 from autogen_testing.settings import settings
-from autogen_testing.custom_agent import DatabaseRetriever
+from autogen_testing.custom_agent import DatabaseRetrieverAgent
 from llama_index.core.agent import ReActAgent
 
 
@@ -57,7 +57,8 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
         and no others actions should be executed.
     '''
 
-    # add the in memory knowledge base as a tool
+    # Create a RetrieverTool and a ReActAgent to retrieve knowledge
+    # to pass to the DatabaseRetriverAgent(AssistantAgent)
     knowledge_tool = RetrieverTool(
         retriever=index.as_retriever(llm=model_client),
         metadata=ToolMetadata(
@@ -66,21 +67,26 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
         ),
     )
 
+    react_agent = ReActAgent.from_tools(
+        tools=[knowledge_tool],
+        llm=OpenAI(
+            model=settings.openai_model_name,
+            api_key=settings.openai_api_key.get_secret_value(),
+            temperature=settings.temperature,
+            max_tokens=settings.max_tokens,
+        ),
+    )
+
     agent_logger.info("Creating Database Agent...")
-    database_agent = AssistantAgent(
+    database_agent = DatabaseRetrieverAgent(
         name="Database_Access_Agent",
         description=database_agent_message,
         model_client=model_client,
-        tools=[KnowledgeBaseSearchTool(knowledge_tool)],
+        # tools=[KnowledgeBaseSearchTool(react_agent)], NOTE: outdated
+        react_agent=react_agent,
         system_message=database_agent_message,
     )
-    # database_agent = DatabaseRetriever(
-    #     name="Database_Access_Agent",
-    #     description=database_agent_message,
-    #     react_agent=user_agent,
-    #     system_message=database_agent_message,
-    # )
-
+    
     dp_agent_message = '''
         You are a Data Processing Agent.
         > Goal: Process retrieved data to respond to the user's input query in a clear, concise, and relevant manner.

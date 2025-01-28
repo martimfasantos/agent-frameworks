@@ -146,13 +146,13 @@ async def streamlit_chat():
     prompt = st.chat_input("Say something")
     if prompt:
         result = await groupchat.run(task=prompt)
-        st.write("Agent: ", result.messages[-1])
+        st.write("Agent: ", (message for message in result.messages))
 
 
 
 if __name__ == "__main__":
 
-    if sys.argv[1] and sys.argv[1] == "chat":
+    if len(sys.argv) > 1 and sys.argv[1] == "chat":
         asyncio.run(streamlit_chat())
     else:
         # launch uvicorn and serve
