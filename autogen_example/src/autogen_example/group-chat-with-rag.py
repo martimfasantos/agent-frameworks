@@ -13,6 +13,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# -------------------------------------------------------------------------- #
+# AUTOGEN 0.2 - OUTDATED! - doesn't work with the latest version of the venv
+# -------------------------------------------------------------------------- #
+
+
 model = os.getenv("OPENAI_MODEL_NAME")
 
 llm_config = {

@@ -12,6 +12,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# -------------------------------------------------------------------------- #
+# AUTOGEN 0.2 - OUTDATED! - doesn't work with the latest version of the venv
+# -------------------------------------------------------------------------- #
 
 # Define an asynchronous function that simulates some asynchronous task (e.g., I/O operation)
 async def my_asynchronous_function():

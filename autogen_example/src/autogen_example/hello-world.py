@@ -2,16 +2,16 @@ import os
 import asyncio
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.openai import OpenAIChatCompletionClient
-from settings import settings # not setting the env variables properly
-from dotenv import load_dotenv
-
-load_dotenv()
+from autogen_example.settings import settings
 
 async def main():
     agent = AssistantAgent(
-            name = "assistant", 
-            model_client=OpenAIChatCompletionClient(model=os.getenv("OPENAI_MODEL_NAME"))
+        name = "assistant", 
+        model_client = OpenAIChatCompletionClient(
+            model=settings.openai_model_name, 
+            api_key=settings.openai_api_key.get_secret_value()
         )
+    )
     result = await agent.run(task="Say 'Hello World!'")
     print(result.messages[1].content)
 
