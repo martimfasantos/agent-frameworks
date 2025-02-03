@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
-dependencies = ["autogen-agentchat>=0.4.4", "autogen-ext[openai]>=0.4.4", "dotenv>=0.0.5", "pydantic-settings>=2.7.1"]
+dependencies = ["autogen-agentchat>=0.4.4", "autogen-ext[openai]>=0.4.4", "pydantic-settings>=2.7.1", "python-dotenv>=1.0.1", "dotenv>=0.0.5"]
 
 [build-system]
 requires = ["pdm-backend"]
@@ -23,4 +23,4 @@ distribution = true
 async-human-input = "python3 src/autogen_example/async-human-input.py"
 group-chat = "python3 src/autogen_example/group-chat-with-tag.py"
 hello-world = "python3 src/autogen_example/hello-world.py"
-nested-chat = "python3 src/autogen_example/nested-chat.py"
+nested-chats = "python3 src/autogen_example/nested-chats.py"
