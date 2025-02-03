@@ -77,7 +77,7 @@ async def query_agent(request: QueryRequest):
     """
     async def run_with_new_groupchat(task):
         groupchat = SelectorGroupChat(
-            participants=agents,
+            participants=create_agents(model_client, index),
             model_client=model_client,
             termination_condition=TextMentionTermination("TERMINATE"),
             allow_repeated_speaker=True,
@@ -90,7 +90,7 @@ async def query_agent(request: QueryRequest):
         start = time.time()
         results = await asyncio.gather(
             *(run_with_new_groupchat(task=query) for query in queries)
-            # NOTE: we have to create a new groupchat for each query
+            # NOTE: we have to create a new groupchat with new agents for each query
         )
         times.append(time.time() - start)
         
@@ -110,9 +110,10 @@ async def query_agent(request: QueryRequest):
         '''
     )
 
-    # --- .run(x10) ---
-    # 1 input - avg: 6.98 ± 1.693 seconds
-    # 10 inputs - avg: -- com logs: 9.63s, 9.64s, 7.62, 10.56, 11.22, 10.97 (x5)
+    # --- Performance Results ---
+    #       (iterations=10)
+    # 1 input - 16.21 ± 5.20 seconds
+    # 10 inputs - 20.69 ± 6.97 seconds
     # 30 inputs - avg: --
     # 50 inputs - ?? # not able to run given the token limit
     # 100 inputs - ?? # not able to run given the token limit
