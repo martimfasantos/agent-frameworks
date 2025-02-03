@@ -27,16 +27,16 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
         > Goal: You process the query. You are the orchestrator of the conversation.
         Delegate tasks to other agents as needed for retrieving or processing data about the user's query.
         The available agents are:
-        - Database Access Agent: Retrieve relevant information from the knowledge base directory.
-        - Data Processing Agent: Process the retrieved data to respond to the user's query.
+            - Database Access Agent: Retrieve relevant information from the knowledge base directory.
+            - Data Processing Agent: Process the retrieved data to respond to the user's query.
         Delegate tasks to the appropriate agents in the following format:
-        - <agent_name>, <task_description>
+            - <agent_name>, <task_description>
 
-        > Backstory: You are also efficient in delegating tasks to other agents to retrieve and process data.
+        > Backstory: You are a planning agent efficient in delegating tasks to other agents to retrieve and process data.
 
         > Task: Understand the user's query and delegate tasks to the appropriate agents to retrieve and process data.
 
-        Expected Output: A clear and concise task delegation to the appropriate agents in the format: <agent_name>, <task_description>.
+        Expected Output: A clear and concise task delegation to the appropriate agents in the format specified above.
     '''
 
     agent_logger.info("Creating User Agent...")
@@ -55,9 +55,9 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
         Don't execute any other actions.
         Be as brief as possible in your responses.
         Delegate your output to the appropriate agents in the following format:
-        - <agent_name>, <task_description>
+            - <agent_name>, <task_description>
         The available agent is:
-        - Data Processing Agent: Process the retrieved data to respond to the user's query.
+            - Data Processing Agent: Process the retrieved data to respond to the user's query.
 
         > Backstory: You are meticulous and efficient, ensuring that all relevant knowledge data is retrieved from the knowledge base.
 
@@ -104,11 +104,11 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
 
         > Goal: Process retrieved data to respond to the user's input query in a clear, concise, and relevant manner.
         Ensure that the data is synthesized and relevant to the query.
-        You must delegate our output to the other specilized agents if necessary.
+        You must delegate some calculations to other specilized agents if necessary.
         When delegating, use the following format:
-        - <agent_name>, <task_description>
+            - <agent_name>, <task_description>
         The available agent are:
-        - Geometric Mean Agent: Calculate the geometric mean of two values.
+            - Geometric Mean Agent: Calculate the geometric mean of two values.
 
         If all data is processed, reply to the user with the processed data and end with "TERMINATE".
 
@@ -135,9 +135,9 @@ def create_agents(model_client: str, index: VectorStoreIndex) -> list[BaseChatAg
         > Goal: Calculate the geometric mean of the data provided by the Data Processing Agent.
         Ensure that the geometric mean is calculated accurately and efficiently.
         Delegate the output to the appropriate agents in the following format:
-        - <agent_name>, <task_description>
+            - <agent_name>, <task_description>
         The available agent is:
-        - Data Processing Agent: Process the retrieved data to respond to the user's query.
+            - Data Processing Agent: Process the retrieved data to respond to the user's query.
 
         > Backstory: You are a mathematical genius, capable of calculating the geometric mean of any set of numbers with ease.
 
