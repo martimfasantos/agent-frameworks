@@ -1,7 +1,7 @@
 import os
 from logging import getLogger
-from crewai import Agent, Crew, Process, Task
-from crewai.project import CrewBase, agent, crew, task
+from crewai import Crew, Agent, Task, Process
+from crewai.project import CrewBase, agent, task, crew
 from langchain_openai import ChatOpenAI
 from .tools.geometric_mean_tool import GeometricMeanTool
 from .settings import settings
@@ -55,6 +55,15 @@ class ChatBot():
 		agent_logger.info("Creating Data Processing Agent")
 		return Agent(
 			config=self.agents_config['data_processing_agent'],
+			llm=self.llm,
+			verbose=True
+		)
+	
+	@agent
+	def geometric_mean_agent(self) -> Agent:
+		agent_logger.info("Creating Geometric Mean Agent")
+		return Agent(
+			config=self.agents_config['geometric_mean_agent'],
 			tools=[
 				GeometricMeanTool(),
 			],
@@ -79,6 +88,12 @@ class ChatBot():
 	def data_processing_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['data_processing_task'],
+		)
+	
+	@task
+	def geometric_mean_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['geometric_mean_task'],
 		)
 
 	@crew

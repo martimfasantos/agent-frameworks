@@ -1,0 +1,14 @@
+{
+  "query": [
+    "Calculate the geometric mean of the John Doe salary and the Jane Smith salary.",
+    "How much does John Doe receive?",
+    "Calculate the geometric mean of the Jane Smith salary and €500,000.",
+    "What does John Doe do for a living?",
+    "How much does Jane Smith receive?",
+    "What are Jane Smith's hobbies?",
+    "What are John Doe's skills?",
+    "What programming languages is Jane skilled in?",
+    "Calculate the geometric mean of the John Doe salary and the Jane Smith salary.",
+    "Where is John Doe based?"
+  ]
+}

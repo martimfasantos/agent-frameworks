@@ -1,11 +1,8 @@
 user_interaction_task:
   description: >
-    Engage in a conversation with the user to fully understand their query "{query}".
-    Employ active listening and clarifying questions to address any ambiguities or incompleteness.
-    Determine the most appropriate actions and data sources to effectively retrieve the necessary information
+    Understand the user's query ("{query}") and delegate tasks to the appropriate agents to retrieve and process data.
   expected_output: >
-    A clear and concise response that addresses the user's query "{query}".
-    If the query is unclear, provide a helpful and informative request for clarification.
+    A clear and concise task delegation to the appropriate agents in the format specified.
   agent: user_agent
 
 database_query_task:
@@ -23,3 +20,10 @@ data_processing_task:
   expected_output: >
     The processed data needed to respond to the user's query "{query}" in a clear, concise, and relevant manner.
   agent: data_processing_agent
+
+geometric_mean_task:
+  description: >
+    Use the tool to calculate the geometric mean of the numbers in the list of numbers.
+  expected_output: >
+    The geometric mean of the numbers in the list of numbers.
+  agent: geometric_mean_agent
