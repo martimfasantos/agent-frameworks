@@ -9,6 +9,7 @@ from autogen_example.settings import settings
 # AUTOGEN 0.4 - WORKING!
 
 # Issue: https://github.com/microsoft/autogen/issues/5359
+# Discussion: https://github.com/microsoft/autogen/discussions/5337
 
 def calculator(a: float, b: float, operator: str) -> str:
     try:
@@ -27,22 +28,6 @@ def calculator(a: float, b: float, operator: str) -> str:
     except Exception as e:
         return f'Error: {str(e)}'
     
-def calculator2(a: float, b: float, operator: str) -> str:
-    try:
-        if operator == '+':
-            return str(a + b)
-        elif operator == '-':
-            return str(a - b)
-        elif operator == '*':
-            return str(a * b)
-        elif operator == '/':
-            if b == 0:
-                return 'Error: Division by zero'
-            return str(a / b)
-        else:
-            return 'Error: Invalid operator. Please use +, -, *, or /'
-    except Exception as e:
-        return f'Error: {str(e)}'
 
 async def main():
     model_client = OpenAIChatCompletionClient(
@@ -62,7 +47,7 @@ async def main():
     assistant2 = AssistantAgent(
         "ParallelizationAssistant2", 
         model_client=model_client, 
-        tools=[calculator2],
+        tools=[calculator],
         handoffs=["planning_agent"],
         system_message="You solve the problem in parallel with another assistant."
     )
