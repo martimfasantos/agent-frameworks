@@ -57,10 +57,10 @@ agent-frameworks-analysis
 |   |   ├── customer-support.ipynb
 |   |   ├── README.md
 ├── smolagents/
-|   ├── smolagents-examples/
+|   ├── smolagents-simple-examples/
 |   |   ├── multi-agent-simple.py
 |   |   ├── multi-agent.py
 |   |   ├── simple-agent.py
 ```
 
-**Note:** Some of the folders/modules are PDM projects and some contain requirements.txt files. **You can find the installation instructions in the README files of each module or sub-module.** Also, **make sure to install the dependencies before running the examples**, either by using PDM or pip.
+⚠️<ins>**Note:**</ins> Some of the folders/modules are PDM projects and some contain requirements.txt files. **You can find the installation instructions in the README files of each module or sub-module.** Also, **make sure to install the dependencies before running the examples**, either by using PDM or pip.
