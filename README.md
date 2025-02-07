@@ -1,6 +1,6 @@
 ## AI Multi-Agent Frameworks Analysis
 
-### Structure - [TODO]
+### Structure
 
 The repository contains 4 modules: `autogen`, `crewai`, `langgraph`, and `smolagents`. Each module is a separate AI multi-agent framework that has been tested and analysed. The analysis includes an overview of the framework, its key features, use cases, and examples to demonstrate its functionality.
 
@@ -15,10 +15,11 @@ agent-frameworks-analysis
 |   │   │   ├── group-chat-with-rag.py
 |   │   │   ├── hello-world.py
 |   │   │   ├── nested-chats.py
+|   │   │   ├── parallelization-agentchat.py
+|   │   │   ├── parallelization-core.py
 |   │   ├── ...
-|   │   ├── README.md
 │   ├── autogen-project/
-|   |   ├── knowledge_base/
+|   |   ├── knowledge-base/
 │   │   ├── prompts/
 │   │   ├── src/
 |   │   │   ├── tools/
@@ -28,10 +29,38 @@ agent-frameworks-analysis
 |   │   │   ├── custom_agent.py
 |   │   │   ├── index.py
 |   │   │   ├── ...
-|   │   │   ├── README.md
 ├── crewai/
+|   ├── chatbot-example/
+|   |   ├── knowledge-base/
+│   │   ├── prompts/
+│   │   ├── src/
+|   │   │   ├── tools/
+|   │   │   |   ├── custom_tool.py
+|   │   │   ├── crewai.py
+|   │   │   ├── main.py
+|   |   ├── ...
+|   ├── crewai-project/
+|   |   ├── knowledge-base/
+│   │   ├── prompts/
+│   │   ├── src/
+|   │   │   ├── tools/
+|   │   │   |   ├── geometric_mean_tool.py
+|   │   │   ├── crewai.py
+|   │   │   ├── main.py
+|   |   ├── ...
+|   ├── crewai-simple-examples/
+|   |   ├── agents.py
+|   |   ├── crew-example-human.py
+|   |   ├── crew-example.py
 ├── langgraph/
+|   ├── langgraph-examples/
+|   |   ├── customer-support.ipynb
+|   |   ├── README.md
 ├── smolagents/
+|   ├── smolagents-examples/
+|   |   ├── multi-agent-simple.py
+|   |   ├── multi-agent.py
+|   |   ├── simple-agent.py
 ```
 
-**Note:** Some of the folders/modules are PDM projects and some contain requirements.txt files. **Make sure to install the dependencies before running the examples**, either by using PDM or pip. You can find the installation instructions in the README files of each module or sub-module.
+**Note:** Some of the folders/modules are PDM projects and some contain requirements.txt files. **You can find the installation instructions in the README files of each module or sub-module.** Also, **make sure to install the dependencies before running the examples**, either by using PDM or pip.

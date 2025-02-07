@@ -1,0 +1,5 @@
+{
+  "query": [
+    "Calculate the geometric mean of the John Doe salary and the Jane Smith salary."
+  ]
+}
