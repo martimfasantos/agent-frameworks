@@ -1,0 +1,19 @@
+[project]
+name = "langgraph-project"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "martimfasantos", email = "72747170+martimfasantos@users.noreply.github.com"},
+]
+dependencies = ["langchain-community>=0.3.17", "tiktoken>=0.8.0", "langchain-openai>=0.3.4", "langchainhub>=0.1.21", "chromadb>=0.6.3", "langchain>=0.3.18", "langgraph>=0.2.70", "langchain-text-splitters>=0.3.6", "beautifulsoup4>=4.13.3", "langchain-mongodb>=0.4.0"]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true

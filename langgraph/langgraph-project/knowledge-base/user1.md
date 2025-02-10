@@ -1,0 +1,2 @@
+User 1: John Doe
+John Doe is an AI Engineer based in Lisboa, Portugal. He specializes in AI agents and has 8 years of experience in the field. John holds a Master’s degree in Computer Science and earns €200,000 per year. He is proficient in programming languages like Python and JavaScript, and uses AI frameworks such as TensorFlow and PyTorch. Outside of work, John enjoys playing chess and hiking.
