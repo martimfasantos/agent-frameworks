@@ -3,22 +3,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field, fields
-from typing import Annotated
 from langchain_openai import ChatOpenAI
 import langgraph_project.agents.prompts as prompts
-from typing import Annotated, Any, Literal, Optional, Type, TypeVar
-from langchain_core.runnables import RunnableConfig, ensure_config
 from langgraph_project.settings import settings
 
-
-
-@dataclass(kw_only=True)
 class AgentsConfiguration:
     """The configuration for the agents."""
 
     # models (only one model is used in this example)
 
-    llm: ChatOpenAI = field(
+    llm: ChatOpenAI = ChatOpenAI(
         model=settings.openai_model_name,
         api_key=settings.openai_api_key.get_secret_value(),
     )

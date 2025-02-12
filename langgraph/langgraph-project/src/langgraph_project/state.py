@@ -16,7 +16,7 @@ from langgraph.graph import add_messages
 # define a narrower interface to the outside world vs. what is maintained
 # internally.
 @dataclass(kw_only=True)
-class AgentState:
+class AgentState(TypedDict):
     """Represents the input state for the agent.
 
     This class defines the structure of the input state, which includes
@@ -32,4 +32,4 @@ class Router(TypedDict):
     """Classify user query."""
 
     logic: str
-    type: Literal["more-info", "langchain", "general"]
+    type: Literal["more-info", "user", "general"]
