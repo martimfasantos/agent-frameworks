@@ -10,7 +10,7 @@ docs = load_documents_from_folder(settings.knowledge_base_path)
 index = create_index(docs)
 
 @tool
-async def retrieve_information_vectorbase(query: str):
+def retrieve_information_vectorbase(query: str):
     """Retrieve information from a MongoDB Atlas Vector Search index.
     
     Args:
@@ -19,5 +19,5 @@ async def retrieve_information_vectorbase(query: str):
     Returns:
         str: Retrieved documents concatenated as a string.
     """
-    documents = index.asimilarity_search(query=query, k=2)
-    return "\n\n".join([doc["page_content"] for doc in documents]) 
+    documents = index.similarity_search(query=query, k=1)
+    return "\n\n".join([doc.page_content for doc in documents]) 

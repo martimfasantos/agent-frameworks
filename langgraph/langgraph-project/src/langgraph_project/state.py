@@ -31,5 +31,5 @@ class AgentState(TypedDict):
 class Router(TypedDict):
     """Classify user query."""
 
-    logic: str
     type: Literal["more-info", "user", "general"]
+    logic: str # save the logic behind the classification

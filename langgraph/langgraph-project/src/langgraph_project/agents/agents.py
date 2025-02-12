@@ -1,3 +1,4 @@
+from logging import getLogger
 from typing import cast
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import Runnable, RunnableConfig
@@ -10,82 +11,82 @@ from langgraph_project.agents.prompts import (
     MORE_INFO_SYSTEM_PROMPT, 
     ROUTER_SYSTEM_PROMPT
 )
+from langchain_core.messages import ToolMessage
 
+agent_logger = getLogger("agents")
 
-class Orchestrator:
-    def __init__(self, llm: ChatOpenAI = AgentsConfiguration.llm):
+class BaseAgent:
+    def __init__(self, system_prompt: str, llm: ChatOpenAI = AgentsConfiguration.llm):
         self.llm = llm
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", ROUTER_SYSTEM_PROMPT),
+            ("system", system_prompt),
             ("placeholder", "{messages}")
         ])
 
     def __call__(self, state: AgentState, config: RunnableConfig):
+        agent_logger.info(f"{"-" * 12} {self.__class__.__name__} responding ... {"-" * 12}")
+        messages = state["messages"]
+        response = self.llm.invoke(self.prompt.format(messages=messages))
+        return {"messages": response}
+
+
+class Orchestrator(BaseAgent):
+    def __init__(self, llm: ChatOpenAI = AgentsConfiguration.llm):
+        super().__init__(ROUTER_SYSTEM_PROMPT, llm)
+
+    def __call__(self, state: AgentState, config: RunnableConfig):
+        agent_logger.info(f"{"-" * 12} {self.__class__.__name__} responding ... {"-" * 12}")
         messages = state["messages"]
         response = cast(
             Router, self.llm.with_structured_output(Router).invoke(self.prompt.format(messages=messages))
         )
         return {"message": response}
+    
 
-
-class GeneralQuestionAgent:
+class GeneralQuestionAgent(BaseAgent):
     def __init__(self, llm: ChatOpenAI = AgentsConfiguration.llm):
-        self.llm = llm
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", GENERAL_SYSTEM_PROMPT),
-            ("placeholder", "{messages}")
-        ])
-
-    def __call__(self, state: AgentState, config: RunnableConfig):
-        messages = state["messages"]
-        response = self.llm.invoke(self.prompt.format(messages=messages))
-        return {"messages": response}
+        super().__init__(GENERAL_SYSTEM_PROMPT, llm)
 
 
-class AskMoreInfoAgent:
+class AskMoreInfoAgent(BaseAgent):
     def __init__(self, llm: ChatOpenAI = AgentsConfiguration.llm):
-        self.llm = llm
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", MORE_INFO_SYSTEM_PROMPT),
-            ("placeholder", "{messages}")
-        ])
-
-    def __call__(self, state: AgentState, config: RunnableConfig):
-        messages = state["messages"]
-        response = self.llm.invoke(self.prompt.format(messages=messages))
-        return {"messages": response}
+        super().__init__(MORE_INFO_SYSTEM_PROMPT, llm)
 
 
-class RAGAgent:
+class RAGAgent(BaseAgent):
     def __init__(self, llm: ChatOpenAI = AgentsConfiguration.llm):
-        self.llm = llm
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", "Execute RAG tool and when you have the results, generate a response."),
-            ("placeholder", "{messages}")
-        ])
-
-    def __call__(self, state: AgentState, config: RunnableConfig):
-        messages = state["messages"]
-        result = self.llm.invoke(self.prompt.format(
-            messages=messages
-        ))
-        print(result)
-        # If tool was called, execute the tool and process the result
-        if result.tool_calls:
-            return {"messages": result}
+        super().__init__("You are a helpful customer support assistant for Mobile Operator. "
+            "You are an expert programmer and problem-solver, tasked with answering any user's query. Use the provided \
+tools to help you find the information you need."
+            " Use the provided tools to search for user's information to assist the user's queries. "
+            " When searching, be persistent. Expand your query bounds if the first search returns no results. "
+            " If a search comes up empty, expand your search before giving up.", llm)
         
-        else:
-            return {"messages": "parse the result"}
-            # If tools are invoked, LLM will handle it automatically.
-            tool_result = result.tool_calls[0]
-            print("-----")
-            print(tool_result)
-            print("-----")
-            parse_tool_result = self.llm.invoke(self.prompt.format(
-                query=messages, tool_result=tool_result
-            ))
-            # print(parse_tool_result)
-            return {"messages": parse_tool_result}
+    def __call__(self, state: AgentState, config: RunnableConfig):
+        messages = state["messages"]
 
+        if isinstance(messages[-1], ToolMessage):
+            return {"messages": messages[-1]}
+
+        result = self.llm.invoke(self.prompt.format(messages=messages))
         return {"messages": result}
+
+
+class GenerateResponseAgent(BaseAgent):
+    def __init__(self, llm: ChatOpenAI = AgentsConfiguration.llm):
+        super().__init__(EXECUTE_RAG_SYSTEM_PROMPT, llm)
+
+    def __call__(self, state: AgentState, config: RunnableConfig):
+        agent_logger.info(f"{"-" * 12} {self.__class__.__name__} responding ... {"-" * 12}")
+        messages = state["messages"]
+        # previous message was a tool message with the results
+        tool_results = messages[-1].content
+        # second to last message was the tool call with the query
+        query = messages[-2].tool_calls[0]["args"]["query"]
+        response = self.llm.invoke(self.prompt.format(
+            messages=messages, 
+            query=query,
+            tool_results=tool_results))
+        return {"messages": response}
+        
     

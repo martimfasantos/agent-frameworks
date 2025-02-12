@@ -1,5 +1,5 @@
+import logging
 from typing import Literal
-from functools import partial
 from langgraph.graph import StateGraph, START, END
 from langgraph_project.state import AgentState
 from langgraph_project.agents.agents import (
@@ -7,11 +7,23 @@ from langgraph_project.agents.agents import (
     GeneralQuestionAgent,
     AskMoreInfoAgent,
     RAGAgent,
+    GenerateResponseAgent
 )
 from langgraph_project.agents.configuration import AgentsConfiguration
 from langgraph_project.utils import create_tool_node_with_fallback, save_graph_image, _print_event
 from langgraph_project.tools import retrieve_information_vectorbase
 from langgraph_project.settings import settings
+
+
+logging.basicConfig(level=logging.INFO) 
+logging.getLogger().setLevel(logging.INFO)
+
+# remove all unnecessary logs
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
+
+main_logger = logging.getLogger("main")
+main_logger.debug("Debug Mode Active")
 
 
 # Define the graph
@@ -32,6 +44,8 @@ builder.add_node(
     "retrieve_information_vectorbase", 
     create_tool_node_with_fallback([retrieve_information_vectorbase])
 )
+# Generate responses after executing RAG
+builder.add_node("generate_response_agent", GenerateResponseAgent())
 
 # Edges
 builder.add_edge(START, "orchestrator")
@@ -53,23 +67,23 @@ builder.add_conditional_edges(
     "orchestrator", route_agent, ["rag_agent", "ask_user_more_info_agent", "respond_to_general_question_agent"]
 )
 builder.add_edge("rag_agent", "retrieve_information_vectorbase")
-builder.add_edge("retrieve_information_vectorbase", "rag_agent")
-builder.add_edge("rag_agent", END)
-builder.add_edge("ask_user_more_info_agent", END)
-builder.add_edge("respond_to_general_question_agent", END)
+builder.add_edge("retrieve_information_vectorbase", "generate_response_agent")
 
 # Compile into a graph object that you can invoke and deploy.
 graph = builder.compile()
 graph.name = "RetrievalGraph"
 
-# save_graph_image(graph, "./img", "graph.png")
+save_graph_image(graph, "./img", "graph.png")
 
 # result = graph.invoke({"messages": [("user", "How much does John Doe pay for his service?")]})
 
 # print(result)
 _printed = set()
 events = graph.stream(
-    {"messages": ("user", "What is John Doe's account number?")}, stream_mode="values"
+    {"messages": ("user", "What is John Doe's account number?")}, stream_mode="values" # RAG
+    # {"messages": ("user", "Can you tell me John's number?")}, stream_mode="values" # More info
+    # {"messages": ("user", "Which stocks showed the most growth in the last 5 years?")}, stream_mode="values" # General
+
 )
 
 for event in events:
