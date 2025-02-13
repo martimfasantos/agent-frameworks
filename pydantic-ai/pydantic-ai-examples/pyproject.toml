@@ -1,0 +1,27 @@
+[project]
+name = "pydantic-ai-examples"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "martimfasantos", email = "72747170+martimfasantos@users.noreply.github.com"},
+]
+dependencies = ["pydantic-ai-slim[logfire,openai,vertexai]>=0.0.24", "pydantic-settings>=2.7.1"]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
+
+[tool.logfire]
+ignore_no_config = true
+
+[tool.pdm.scripts]
+graph-gen-ai = "python3 src/pydantic_ai_examples/graph_gen_ai.py"
+programmatic-handoff = "python3 src/pydantic_ai_examples/programmatic_handoff.py"
+
