@@ -24,4 +24,5 @@ ignore_no_config = true
 [tool.pdm.scripts]
 graph-gen-ai = "python3 src/pydantic_ai_examples/graph_gen_ai.py"
 programmatic-handoff = "python3 src/pydantic_ai_examples/programmatic_handoff.py"
+tools = "python3 src/pydantic_ai_examples/tools_and_dependency_injection.py"
 
