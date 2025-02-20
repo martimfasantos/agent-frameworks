@@ -54,7 +54,10 @@ class State:
 
 # model = OpenAIModel('gpt-4o', openai_client=client)
 
-model = OpenAIModel('gpt-4o-mini', api_key=settings.openai_api_key.get_secret_value())
+model = OpenAIModel(
+    model_name=settings.openai_model_name,
+    api_key=settings.openai_api_key.get_secret_value()
+)
 
 email_writer_agent = Agent(
     model=model, # cannot use models.KnownModelName here because of the api key

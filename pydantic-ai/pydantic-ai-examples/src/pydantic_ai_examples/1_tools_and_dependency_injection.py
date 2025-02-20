@@ -7,7 +7,10 @@ from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai_examples.settings import settings
 
 
-model = OpenAIModel('gpt-4o-mini', api_key=settings.openai_api_key.get_secret_value())
+model = OpenAIModel(
+    model_name=settings.openai_model_name,
+    api_key=settings.openai_api_key.get_secret_value()
+)
 
 
 class DatabaseConn:
