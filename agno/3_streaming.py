@@ -4,9 +4,10 @@ from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
 from settings import settings
 
+# ---------------------------------------------------------
 # In this example, we explore Agno's Agent class with the following features:
-# - Asynchronous runs
 # - Streaming responses
+# ---------------------------------------------------------
 
 async def main():
 

@@ -10,19 +10,27 @@ from agno.storage.workflow.sqlite import SqliteWorkflowStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.pprint import pprint_run_response
 from agno.utils.log import logger
+from settings import settings
 
 # ---------------------------------------------------------
 # In this example, we explore Agno's Workflow class with the following features:
-# - Pydantic models for input and output data
+# - Workflow with multiple agents
 # - Caching results using the session_state
+# - Pydantic models for input and output data
 # ---------------------------------------------------------
 
+model = OpenAIChat(
+    id=settings.openai_model_name,
+    api_key=settings.openai_api_key.get_secret_value(),
+)
 
-# Pydantic models for input and output data
+
+# Pydantic models for input and output data (structured)
 class NewsArticle(BaseModel):
     title: str = Field(..., description="Title of the article.")
     url: str = Field(..., description="Link to the article.")
     summary: Optional[str] = Field(..., description="Summary of the article if available.")
+
 
 class SearchResults(BaseModel):
     articles: list[NewsArticle]
@@ -32,7 +40,7 @@ class SearchResults(BaseModel):
 class BlogPostGenerator(Workflow):
     # Define an Agent that will search the web for a topic
     searcher: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=model,
         tools=[DuckDuckGoTools()],
         instructions=["Given a topic, search for the top 5 articles."],
         response_model=SearchResults,
@@ -41,7 +49,7 @@ class BlogPostGenerator(Workflow):
 
     # Define an Agent that will write the blog post
     writer: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=model,
         instructions=[
             "You will be provided with a topic and a list of top articles on that topic.",
             "Carefully read each article and generate a New York Times worthy blog post on that topic.",
