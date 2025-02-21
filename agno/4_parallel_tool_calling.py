@@ -54,8 +54,6 @@ finance_agent = Agent(
 )
 
 
-
-
 agent_team = Agent(
     team=[web_agent, finance_agent],
     model=model,
@@ -71,5 +69,3 @@ agent_team.print_response(
     stream=True,
     show_full_reasoning=True
 )
-
-agent_team.all
