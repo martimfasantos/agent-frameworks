@@ -10,3 +10,6 @@ __pycache__/
 .chainlit/
 tmp
 *.sqlite
+
+# VSCode
+.vscode/
