@@ -13,7 +13,7 @@ from langchain_huggingface import ChatHuggingFace
 from langchain_core.tools import Tool
 from langchain_core.prompts import ChatPromptTemplate
 
-from utils import get_tools_descriptions
+from utils import get_tools_descriptions, parse_args, execute_agent
 
 # Prompt components
 from prompts import role, goal, instructions, knowledge
@@ -31,7 +31,7 @@ class State(TypedDict):
 
 
 class Agent:
-    def __init__(self):
+    def __init__(self, memory: bool = True):
         """
         Initialize the LangGraph agent using create_react_agent.
         """
@@ -41,7 +41,10 @@ class Agent:
         self.tools = self._create_tools()
 
         # Create memory
-        self.memory = MemorySaver()
+        if memory:
+            self.memory = MemorySaver()
+        else:
+            self.memory = None
         # Memory will be checkpointed per thread. We will start with thread id 1.
         self.thread_id = 1
 
@@ -79,15 +82,15 @@ class Agent:
         return today.strftime("%B %d, %Y")
 
     @staticmethod
-    def web_search(query):
+    def web_search_tool(query: str):
         """
         This function searches the web for the given query and returns the results.
         """
         # Call Tavily's search and dump the results as a JSON string
         search_response = tavily_client.search(query)
         results = json.dumps(search_response.get('results', []))
-        print(f"Web Search Results for '{query}':")
-        print(results)
+        # print(f"Web Search Results for '{query}':")
+        # print(results)
         return results
 
     def _create_tools(self):
@@ -105,7 +108,7 @@ class Agent:
             ),
             Tool(
                 name="web_search_tool",
-                func=self.web_search,
+                func=self.web_search_tool,
                 description="Useful for searching the web for information"
             )
         ]
@@ -180,15 +183,14 @@ def main():
     Example usage demonstrating the agent interface.
     """
     
-    agent = Agent()
+    args = parse_args()
 
-    while True:
-        query = input("You: ")
-        if query.lower() in ['exit', 'quit']:
-            break
+    if args.no_memory:
+        agent = Agent(memory=False)
+    else:
+        agent = Agent()
 
-        response = agent.chat(query)
-        print(f"Assistant: {response}")
+    execute_agent(agent, args)
 
 
 if __name__ == "__main__":

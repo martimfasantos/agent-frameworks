@@ -14,7 +14,7 @@ from llama_index.core import PromptTemplate
 from prompts import role, goal, instructions, knowledge
 from prompts import llama_index_react_prompt # extra import
 
-from utils import get_tools_descriptions
+from utils import get_tools_descriptions, parse_args, execute_agent
 
 # Load environment variables
 from settings import settings
@@ -24,7 +24,7 @@ tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
 
 class Agent:
-    def __init__(self):
+    def __init__(self, memory: bool = True):
         """
         Initialize the Llama-Index agent.
         """
@@ -40,9 +40,12 @@ class Agent:
         self.tools = self._create_tools()
 
         # Initialize the memory
-        chat_memory = ChatMemoryBuffer.from_defaults(
-            token_limit=4096
-        )
+        if memory:
+            chat_memory = ChatMemoryBuffer.from_defaults(
+                token_limit=4096
+            )
+        else:
+            chat_memory = None
 
         # Create the agent
         self.agent = ReActAgent.from_tools(
@@ -73,15 +76,15 @@ class Agent:
         return today.strftime("%B %d, %Y")
 
     @staticmethod
-    def web_search(query):
+    def web_search_tool(query: str):
         """
         This function searches the web for the given query and returns the results.
         """
         # Call Tavily's search and dump the results as a JSON string
         search_response = tavily_client.search(query)
         results = json.dumps(search_response.get('results', []))
-        print(f"Web Search Results for '{query}':")
-        print(results)
+        # print(f"Web Search Results for '{query}':")
+        # print(results)
         return results
 
     def _create_tools(self):
@@ -98,7 +101,7 @@ class Agent:
                 description="Useful for getting the current date"
             ),
             FunctionTool.from_defaults(
-                fn=self.web_search,
+                fn=self.web_search_tool,
                 name="web_search_tool",
                 description="Useful for searching the web for information"
             )
@@ -145,16 +148,14 @@ def main():
     Example usage demonstrating the agent interface.
     """
 
-    agent = Agent()
+    args = parse_args()
 
-    while True:
-        query = input("You: ")
-        if query.lower() in ['exit', 'quit']:
-            break
+    if args.no_memory:
+        agent = Agent(memory=False)
+    else:
+        agent = Agent()
 
-        response = agent.chat(query)
-        print(f"Assistant: {response}")
-
+    execute_agent(agent, args)
 
 if __name__ == "__main__":
     main()

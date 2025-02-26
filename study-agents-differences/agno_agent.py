@@ -6,11 +6,12 @@ import json
 # Llama-Index imports
 from agno.models.openai import OpenAIChat
 from agno.agent import Agent as AgnoAgent
+from agno.memory import AgentMemory
 from agno.tools import tool
 from agno.tools.tavily import TavilyTools
 
 from settings import settings
-from utils import get_tools_descriptions
+from utils import get_tools_descriptions, parse_args, execute_agent
 
 # Prompt components
 from prompts import role, goal, instructions, knowledge
@@ -23,7 +24,7 @@ from settings import settings
 
 
 class Agent:
-    def __init__(self):
+    def __init__(self, memory: bool = True):
         """
         Initialize the Agno agent.
         """
@@ -51,9 +52,12 @@ class Agent:
                 "You have access to two primary tools: date and web_search.",
                 knowledge
             ]),
+            memory=AgentMemory(),
+            add_history_to_messages=True if memory else False,
+            read_chat_history=True if memory else False,
             respond_directly=True,
             markdown=True,
-            show_tool_calls=True # to show the tools calls in the response
+            # show_tool_calls=True # to show the tools calls in the response
         )
 
         # Extras: 
@@ -75,7 +79,7 @@ class Agent:
     # This tool is part of the TavilyTools toolkit, we can leverage it directly
     @staticmethod
     @tool(name="web_search_tool", description="Searches the web for information")
-    def web_search(query):
+    def web_search_tool(query: str):
         """
         This function searches the web for the given query and returns the results.
         """
@@ -84,8 +88,8 @@ class Agent:
         # Call Tavily's search and dump the results as a JSON string
         search_response = tavily_client.search(query)
         results = json.dumps(search_response.get('results', []))
-        print(f"Web Search Results for '{query}':")
-        print(results)
+        # print(f"Web Search Results for '{query}':")
+        # print(results)
         return results
 
     def _create_tools(self):
@@ -144,15 +148,14 @@ def main():
     Example usage demonstrating the agent interface.
     """
 
-    agent = Agent()
+    args = parse_args()
 
-    while True:
-        query = input("You: ")
-        if query.lower() in ['exit', 'quit']:
-            break
+    if args.no_memory:
+        agent = Agent(memory=False)
+    else:
+        agent = Agent()
 
-        response = agent.chat(query)
-        print(f"Assistant: {response}")
+    execute_agent(agent, args)
 
 
 if __name__ == "__main__":

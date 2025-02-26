@@ -11,7 +11,7 @@ from pydantic_ai import Agent as PydanticAgent, RunContext
 # Prompt components
 from prompts import role, goal, instructions, knowledge
 
-from utils import get_tools_descriptions
+from utils import get_tools_descriptions, parse_args, execute_agent
 
 # Load environment variables
 from settings import settings
@@ -21,7 +21,7 @@ tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
 
 class Agent:
-    def __init__(self):
+    def __init__(self, memory: bool = True):
         """
         Initialize the Pydantic AI agent.
         """
@@ -71,18 +71,18 @@ class Agent:
             return today.strftime("%B %d, %Y")
 
         # @self.agent.tool_plain
-        async def web_search(query: str) -> str:
+        async def web_search_tool(query: str) -> str:
             """Search the web for information"""
             # Call Tavily's search and dump the results as a JSON string
             search_response = tavily_client.search(query)
             results = json.dumps(search_response.get('results', []))
-            print(f"Web Search Results for '{query}':")
-            print(results)
+            # print(f"Web Search Results for '{query}':")
+            # print(results)
             return results
         
         return [
             Tool(date_tool, name="date_tool", description="Gets the current date"),
-            Tool(web_search, name="web_search_tool", description="Searches the web for information")
+            Tool(web_search_tool, name="web_search_tool", description="Searches the web for information")
         ]
 
     def chat(self, message):
@@ -136,15 +136,15 @@ def main():
     """
     Example usage demonstrating the agent interface.
     """
-    agent = Agent()
 
-    while True:
-        query = input("You: ")
-        if query.lower() in ['exit', 'quit']:
-            break
+    args = parse_args()
 
-        response = agent.chat(query)
-        print(f"Assistant: {response}")
+    if args.no_memory:
+        agent = Agent(memory=False)
+    else:
+        agent = Agent()
+
+    execute_agent(agent, args)
 
 
 if __name__ == "__main__":
