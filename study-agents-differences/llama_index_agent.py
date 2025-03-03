@@ -28,8 +28,8 @@ from settings import settings
 # Initialize Tavily client
 tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-# logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+# logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+# # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 class Agent:
     def __init__(self, provider: str = "openai", memory: bool = True):
