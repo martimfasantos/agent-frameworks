@@ -1,5 +1,6 @@
 import os
 from datetime import date
+from pyexpat import model
 from tavily import TavilyClient
 import json
 
@@ -8,7 +9,7 @@ from typing import Annotated, TypedDict
 from langgraph.graph.message import add_messages
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
-from langchain_openai import ChatOpenAI
+from langchain_openai import AzureChatOpenAI, ChatOpenAI
 from langchain_huggingface import ChatHuggingFace
 from langchain_core.tools import Tool
 from langchain_core.prompts import ChatPromptTemplate
@@ -31,7 +32,7 @@ class State(TypedDict):
 
 
 class Agent:
-    def __init__(self, memory: bool = True):
+    def __init__(self, provider: str = "openai", memory: bool = True):
         """
         Initialize the LangGraph agent using create_react_agent.
         """
@@ -52,12 +53,24 @@ class Agent:
         self.prompt = self._create_prompt()
 
         # Initialize the language model
-        self.model = ChatOpenAI(
-            api_key=settings.openai_api_key.get_secret_value(), 
-            model=settings.openai_model_name
-        ) if settings.openai_api_key else (
-            ChatHuggingFace(model=settings.open_source_model_name)
+        self.model = (
+            AzureChatOpenAI(
+                base_url=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
+                api_version=settings.azure_api_version,
+                api_key=settings.azure_api_key.get_secret_value(),
+            ) 
+            if provider == "azure" and settings.azure_api_key
+            else ChatOpenAI(
+                api_key=settings.openai_api_key.get_secret_value(),
+                id=settings.openai_model_name,
+            )
+            if provider == "openai" and settings.openai_api_key
+            else ChatHuggingFace(
+                model=settings.open_source_model_name
+            )
         )
+
+        # print(f"Using model: {self.model}")
 
         # Create the agent graph
         self.graph = create_react_agent(
@@ -89,6 +102,7 @@ class Agent:
         # Call Tavily's search and dump the results as a JSON string
         search_response = tavily_client.search(query)
         results = json.dumps(search_response.get('results', []))
+        # print("Web Search Tool was called!")
         # print(f"Web Search Results for '{query}':")
         # print(results)
         return results
@@ -186,9 +200,9 @@ def main():
     args = parse_args()
 
     if args.no_memory:
-        agent = Agent(memory=False)
+        agent = Agent(provider=args.provider, memory=False)
     else:
-        agent = Agent()
+        agent = Agent(provider=args.provider)
 
     execute_agent(agent, args)
 

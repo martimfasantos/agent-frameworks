@@ -1,4 +1,6 @@
 from datetime import date
+from langchain_huggingface import HuggingFaceEndpoint
+from langchain_openai import AzureChatOpenAI, ChatOpenAI
 from tavily import TavilyClient
 import json
 import asyncio
@@ -27,9 +29,22 @@ class Agent:
         """
         self.name = "PydanticAI Agent"
 
-        self.model = OpenAIModel(
-            model_name=settings.openai_model_name,
-            api_key=settings.openai_api_key.get_secret_value()
+        # Initialize the language model
+        self.model = (
+            AzureChatOpenAI(
+                base_url=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
+                api_version=settings.azure_api_version,
+                api_key=settings.azure_api_key.get_secret_value(),
+            )
+            if settings.azure_api_key
+            else ChatOpenAI(
+                api_key=settings.openai_api_key.get_secret_value(),
+                id=settings.openai_model_name,
+            )
+            if settings.openai_api_key
+            else HuggingFaceEndpoint(
+                model=settings.open_source_model_name
+            )
         )
 
         # Create tools

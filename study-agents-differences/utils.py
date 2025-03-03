@@ -37,6 +37,12 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
+        "--provider", 
+        type=str, 
+        choices=["openai", "azure", "other"], 
+        help="The LLM provider to use in the agent."
+    )
+    parser.add_argument(
         "--mode", 
         type=str, 
         choices=["response-time", "response-time-loop"], 
@@ -49,9 +55,13 @@ def parse_args():
     )
     parser.add_argument(
         "--no-memory",
-        type=bool,
-        default=False,
+        action="store_true",
         help="Maintain conversation history in the agent."
+    )
+    parser.add_argument(
+        "--creation",
+        action="store_true",
+        help="Create a new agent instance each time."
     )
     parser.add_argument(
         "--prints",
@@ -93,6 +103,10 @@ def execute_agent(agent: object, args: argparse.Namespace):
 
             for _ in range(iterations):
                 start = time.time()
+                if args.creation:
+                    Agent = type(agent) 
+                    # print("new agent created")
+                    agent = Agent(provider=args.provider, memory=not args.no_memory)
                 response = agent.chat(query)
                 end = time.time()
                 response_times.append(end - start)

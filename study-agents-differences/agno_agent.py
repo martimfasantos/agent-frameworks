@@ -1,14 +1,15 @@
 from datetime import date
-from scipy.__config__ import show
 from tavily import TavilyClient
 import json
 
 # Llama-Index imports
 from agno.models.openai import OpenAIChat
+from agno.models.azure import AzureOpenAI
 from agno.agent import Agent as AgnoAgent
 from agno.memory import AgentMemory
 from agno.tools import tool
 from agno.tools.tavily import TavilyTools
+from agno.models.huggingface import HuggingFace
 
 from settings import settings
 from utils import get_tools_descriptions, parse_args, execute_agent
@@ -24,17 +25,31 @@ from settings import settings
 
 
 class Agent:
-    def __init__(self, memory: bool = True):
+    def __init__(self, provider: str = "openai", memory: bool = True):
         """
         Initialize the Agno agent.
         """
         self.name = "Agno Agent"
 
-        self.model = OpenAIChat(
-            api_key=settings.openai_api_key.get_secret_value(),
-            id=settings.openai_model_name,
+        # self.model = ( #    TODO: Wait for the new Agno version to be released
+        #     AzureOpenAI(
+        #         base_url=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
+        #         api_version=settings.azure_api_version,
+        #         api_key=settings.azure_api_key.get_secret_value(),
+        #     ) 
+        #     if provider == "azure" and settings.azure_api_key 
+        #     else 
+        self.model = (
+            OpenAIChat(
+                api_key=settings.openai_api_key.get_secret_value(),
+                id=settings.openai_model_name,
+            ) 
+            if provider == "openai" and settings.openai_api_key
+            else HuggingFace(
+                model_name=settings.open_source_model_name,
+            )
         )
-        
+
         # Create tools
         self.tools = self._create_tools()
 
@@ -49,7 +64,7 @@ class Agent:
                 role,
                 goal,
                 instructions,
-                "You have access to two primary tools: date and web_search.",
+                "You have access to two primary tools: date_tool and web_search_tool.",
                 knowledge
             ]),
             memory=AgentMemory(),
@@ -151,9 +166,9 @@ def main():
     args = parse_args()
 
     if args.no_memory:
-        agent = Agent(memory=False)
+        agent = Agent(provider=args.provider, memory=False)
     else:
-        agent = Agent()
+        agent = Agent(provider=args.provider)
 
     execute_agent(agent, args)
 

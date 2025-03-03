@@ -1,10 +1,16 @@
 import os
+import sys
+import logging
 from datetime import date
+from litellm import api_base, azure_embedding_models
 from tavily import TavilyClient
 import json
 
+
 # Llama-Index imports
 from llama_index.llms.openai import OpenAI
+from llama_index.llms.azure_openai import AzureOpenAI
+from llama_index.llms.huggingface_api import HuggingFaceInferenceAPI
 from llama_index.core.agent import ReActAgent
 from llama_index.core.tools import FunctionTool
 from llama_index.core.memory import ChatMemoryBuffer
@@ -22,18 +28,33 @@ from settings import settings
 # Initialize Tavily client
 tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+# logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 class Agent:
-    def __init__(self, memory: bool = True):
+    def __init__(self, provider: str = "openai", memory: bool = True):
         """
         Initialize the Llama-Index agent.
         """
         self.name = "Llama-Index Agent"
         
         # Initialize the language model
-        self.model = OpenAI(
-            api_key=settings.openai_api_key.get_secret_value(),
-            model=settings.openai_model_name,
+        self.model = (
+            AzureOpenAI(
+                engine=settings.azure_deployment_name,
+                api_base=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
+                api_version=settings.azure_api_version,
+                api_key=settings.azure_api_key.get_secret_value(),
+            )
+            if provider == "azure" and settings.azure_api_key
+            else OpenAI(
+                api_key=settings.openai_api_key.get_secret_value(),
+                id=settings.openai_model_name,
+            )
+            if provider == "openai" and settings.openai_api_key
+            else HuggingFaceInferenceAPI(
+                model=settings.open_source_model_name
+            )
         )
 
         # Create tools
@@ -151,9 +172,9 @@ def main():
     args = parse_args()
 
     if args.no_memory:
-        agent = Agent(memory=False)
+        agent = Agent(provider=args.provider, memory=False)
     else:
-        agent = Agent()
+        agent = Agent(provider=args.provider)
 
     execute_agent(agent, args)
 
