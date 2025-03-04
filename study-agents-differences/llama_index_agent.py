@@ -32,7 +32,12 @@ tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 # # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 class Agent:
-    def __init__(self, provider: str = "openai", memory: bool = True):
+    def __init__(
+        self, 
+        provider: str = "openai", 
+        memory: bool = True,
+        verbose: bool = False
+    ):
         """
         Initialize the Llama-Index agent.
         """
@@ -72,8 +77,8 @@ class Agent:
         self.agent = ReActAgent.from_tools(
             llm=self.model,
             tools=self.tools,
-            verbose=False,
-            memory=chat_memory
+            memory=chat_memory,
+            verbose=True if verbose else False
         )
 
         # Customize the system prompt with our own instructions.
@@ -104,7 +109,7 @@ class Agent:
         # Call Tavily's search and dump the results as a JSON string
         search_response = tavily_client.search(query)
         results = json.dumps(search_response.get('results', []))
-        # print(f"Web Search Results for '{query}':")
+        print(f"Web Search Results for '{query}':")
         # print(results)
         return results
 
@@ -171,10 +176,11 @@ def main():
 
     args = parse_args()
 
-    if args.no_memory:
-        agent = Agent(provider=args.provider, memory=False)
-    else:
-        agent = Agent(provider=args.provider)
+    agent = Agent(
+        provider=args.provider,
+        memory=False if args.no_memory else True,
+        verbose=args.verbose
+    )
 
     execute_agent(agent, args)
 

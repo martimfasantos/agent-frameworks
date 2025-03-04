@@ -32,7 +32,12 @@ class State(TypedDict):
 
 
 class Agent:
-    def __init__(self, provider: str = "openai", memory: bool = True):
+    def __init__(
+        self, 
+        provider: str = "openai", 
+        memory: bool = True,
+        verbose: bool = False
+    ):
         """
         Initialize the LangGraph agent using create_react_agent.
         """
@@ -70,14 +75,13 @@ class Agent:
             )
         )
 
-        # print(f"Using model: {self.model}")
-
         # Create the agent graph
         self.graph = create_react_agent(
             model=self.model,
             tools=self.tools,
             prompt=self.prompt,
-            checkpointer=self.memory
+            checkpointer=self.memory,
+            debug=True if verbose else False
         )
 
         # Extras:
@@ -199,10 +203,11 @@ def main():
     
     args = parse_args()
 
-    if args.no_memory:
-        agent = Agent(provider=args.provider, memory=False)
-    else:
-        agent = Agent(provider=args.provider)
+    agent = Agent(
+        provider=args.provider,
+        memory=False if args.no_memory else True,
+        verbose=args.verbose
+    )
 
     execute_agent(agent, args)
 

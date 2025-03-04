@@ -33,7 +33,7 @@ Some flags can be passed to the agents to change their behavior when running ind
 - `--iter [int]`: Number of iterations the agent will run. Default is 1. (Only needed for `response-time-loop` mode).
 - `--creation`: If you want to create an Agent's instance in every iteration. Default is False.
 - `--no-memory`: If you want to run the agent without memory. Default is False.
-- `--print`: If you want to see the agent's responses. Default is True for Normal mode and False for `response-time` and `response-time-loop` modes.
+- `--verbose`: If you want to see the agent's logs and responses. Default is True for Normal mode and False for `response-time` and `response-time-loop` modes.
 - `--file [output file]`: If you want to save the agent's responses to a file. Default is False. (Only needed for `response-time` and `response-time-loop` modes)
 
 If you want to see the `web_search_tool` call and response, uncomment the print statements in the `web_search_tool` function in the respective agent file.

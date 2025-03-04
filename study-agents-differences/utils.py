@@ -1,5 +1,6 @@
 import os
 import importlib
+from tabnanny import verbose
 from typing import Tuple
 import argparse
 
@@ -64,9 +65,9 @@ def parse_args():
         help="Create a new agent instance each time."
     )
     parser.add_argument(
-        "--prints",
+        "--verbose",
         action="store_true",
-        help="Print the Assistant's response."
+        help="Print the Agent's logs and messages."
     )
     parser.add_argument(
         "--file",
@@ -77,7 +78,7 @@ def parse_args():
     args = parser.parse_args()
 
     if args.mode is None:
-        args.prints = True
+        args.verbose = True
 
     if args.mode == "response-time-loop" and args.iter is None:
         parser.error("--iter is required when --mode is 'response-time-loop'.")
@@ -105,12 +106,17 @@ def execute_agent(agent: object, args: argparse.Namespace):
                 start = time.time()
                 if args.creation:
                     Agent = type(agent) 
-                    # print("new agent created")
-                    agent = Agent(provider=args.provider, memory=not args.no_memory)
+                    if args.verbose:
+                        print("New agent created.")
+                    agent = Agent(
+                        provider=args.provider, 
+                        memory=False if args.no_memory else True,
+                        verbose=args.verbose
+                    )
                 response = agent.chat(query)
                 end = time.time()
                 response_times.append(end - start)
-                if args.prints:
+                if args.verbose:
                     if args.file:
                         with open(args.file, "a") as f:
                             f.write(f"Assistant: {response}\n")
@@ -127,6 +133,6 @@ def execute_agent(agent: object, args: argparse.Namespace):
 
         else:
             response = agent.chat(query)
-            if args.prints:
+            if args.verbose:
                 print(f"Assistant: {response}")
 

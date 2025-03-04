@@ -23,7 +23,12 @@ tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
 
 class Agent:
-    def __init__(self, memory: bool = True):
+    def __init__(
+        self, 
+        provider: str = "openai",
+        memory: bool = True,
+        verbose: bool = False
+        ):
         """
         Initialize the Pydantic AI agent.
         """
@@ -36,12 +41,12 @@ class Agent:
                 api_version=settings.azure_api_version,
                 api_key=settings.azure_api_key.get_secret_value(),
             )
-            if settings.azure_api_key
+            if provider == "azure" and settings.azure_api_key
             else ChatOpenAI(
                 api_key=settings.openai_api_key.get_secret_value(),
                 id=settings.openai_model_name,
             )
-            if settings.openai_api_key
+            if provider == "openai" and settings.openai_api_key
             else HuggingFaceEndpoint(
                 model=settings.open_source_model_name
             )
@@ -154,10 +159,11 @@ def main():
 
     args = parse_args()
 
-    if args.no_memory:
-        agent = Agent(memory=False)
-    else:
-        agent = Agent()
+    agent = Agent(
+        provider=args.provider,
+        memory=False if args.no_memory else True,
+        verbose=args.verbose
+    )
 
     execute_agent(agent, args)
 
