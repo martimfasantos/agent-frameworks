@@ -25,21 +25,25 @@ from settings import settings
 
 
 class Agent:
-    def __init__(self, provider: str = "openai", memory: bool = True):
+    def __init__(
+        self, 
+        provider: str = "openai", 
+        memory: bool = True,
+        verbose: bool = False
+    ):
         """
         Initialize the Agno agent.
         """
         self.name = "Agno Agent"
 
-        # self.model = ( #    TODO: Wait for the new Agno version to be released
-        #     AzureOpenAI(
-        #         base_url=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
-        #         api_version=settings.azure_api_version,
-        #         api_key=settings.azure_api_key.get_secret_value(),
-        #     ) 
-        #     if provider == "azure" and settings.azure_api_key 
-        #     else 
-        self.model = (
+        self.model = ( #    NOTE: available in v1.1.8 after the PR: https://github.com/agno-agi/agno/pull/2273
+            AzureOpenAI(
+                base_url=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
+                api_version=settings.azure_api_version,
+                api_key=settings.azure_api_key.get_secret_value(),
+            ) 
+            if provider == "azure" and settings.azure_api_key 
+            else 
             OpenAIChat(
                 api_key=settings.openai_api_key.get_secret_value(),
                 id=settings.openai_model_name,
@@ -67,12 +71,13 @@ class Agent:
                 "You have access to two primary tools: date_tool and web_search_tool.",
                 knowledge
             ]),
-            memory=AgentMemory(),
+            memory=AgentMemory(), # <-- even if memory is None, it will still be created when the agent runs
             add_history_to_messages=True if memory else False,
             read_chat_history=True if memory else False,
             respond_directly=True,
             markdown=True,
-            # show_tool_calls=True # to show the tools calls in the response
+            # to show the tools calls in the response
+            show_tool_calls=True if verbose else False
         )
 
         # Extras: 
@@ -165,10 +170,11 @@ def main():
 
     args = parse_args()
 
-    if args.no_memory:
-        agent = Agent(provider=args.provider, memory=False)
-    else:
-        agent = Agent(provider=args.provider)
+    agent = Agent(
+        provider=args.provider,
+        memory=False if args.no_memory else True,
+        verbose=args.verbose
+    )
 
     execute_agent(agent, args)
 
