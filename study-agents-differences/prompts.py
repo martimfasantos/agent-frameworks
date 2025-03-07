@@ -123,3 +123,9 @@ It is considered an error for an Action not to be preceded by a Thought.
 It is considered an error for an Action not to be followed by an Action Input.
 
 """
+
+openai_completion_after_tool_call_prompt = """
+Using the information retrieved, generate a well-structured and relevant response to 
+the user's original query. Ensure clarity and completeness in your answer.
+Be concise and avoid unnecessary details.
+"""
