@@ -60,7 +60,7 @@ def parse_args():
         help="Maintain conversation history in the agent."
     )
     parser.add_argument(
-        "--creation",
+        "--create",
         action="store_true",
         help="Create a new agent instance each time."
     )
@@ -103,16 +103,16 @@ def execute_agent(agent: object, args: argparse.Namespace):
             import numpy as np
 
             for _ in range(iterations):
-                start = time.time()
-                if args.creation:
+                if args.create:
                     Agent = type(agent) 
-                    if args.verbose:
-                        print("New agent created.")
                     agent = Agent(
                         provider=args.provider, 
                         memory=False if args.no_memory else True,
                         verbose=args.verbose
                     )
+                    if args.verbose:
+                        print("New agent created.")
+                start = time.time()
                 response = agent.chat(query)
                 end = time.time()
                 response_times.append(end - start)
