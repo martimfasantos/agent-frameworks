@@ -2,7 +2,7 @@ from datetime import date
 from tavily import TavilyClient
 import json
 
-# Llama-Index imports
+# Agno imports
 from agno.models.openai import OpenAIChat
 from agno.models.azure import AzureOpenAI
 from agno.agent import Agent as AgnoAgent

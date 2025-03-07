@@ -1,8 +1,4 @@
-import os
-import sys
-import logging
 from datetime import date
-from litellm import api_base, azure_embedding_models
 from tavily import TavilyClient
 import json
 
@@ -11,7 +7,7 @@ import json
 from llama_index.llms.openai import OpenAI
 from llama_index.llms.azure_openai import AzureOpenAI
 from llama_index.llms.huggingface_api import HuggingFaceInferenceAPI
-from llama_index.core.agent import ReActAgent
+from llama_index.core.agent import ReActAgent, FunctionCallingAgent
 from llama_index.core.tools import FunctionTool
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core import PromptTemplate
@@ -41,7 +37,7 @@ class Agent:
         """
         Initialize the Llama-Index agent.
         """
-        self.name = "Llama-Index Agent"
+        self.name = "Llama-Index ReAct Agent"
         
         # Initialize the language model
         self.model = (
@@ -78,10 +74,12 @@ class Agent:
             llm=self.model,
             tools=self.tools,
             memory=chat_memory,
+            # context="If the user asks a question the you already know the answer"
+            #         "just respond without calling any tools.",
             verbose=True if verbose else False
         )
 
-        # Customize the system prompt with our own instructions.
+        # Customize the system prompt with our own instructions - ReActAgent specific
         updated_system_prompt = PromptTemplate("\n".join([role, goal, instructions, knowledge, llama_index_react_prompt]))
         self.agent.update_prompts({"agent_worker:system_prompt": updated_system_prompt})
         self.agent.reset()
@@ -109,7 +107,7 @@ class Agent:
         # Call Tavily's search and dump the results as a JSON string
         search_response = tavily_client.search(query)
         results = json.dumps(search_response.get('results', []))
-        print(f"Web Search Results for '{query}':")
+        # print(f"Web Search Results for '{query}':")
         # print(results)
         return results
 
@@ -132,6 +130,10 @@ class Agent:
                 description="Useful for searching the web for information"
             )
         ]
+        # ] + TavilyToolSpec(
+        #         api_key=settings.tavily_api_key.get_secret_value(),
+        #     ).to_tool_list()
+        
 
     def chat(self, message):
         """
