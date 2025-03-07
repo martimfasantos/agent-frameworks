@@ -24,6 +24,7 @@ class Agent:
     def __init__(
         self, 
         provider: str = "openai", 
+        memory: bool = True,
         verbose: bool = False
     ):
         """
@@ -248,6 +249,7 @@ def main():
 
     agent = Agent(
         provider=args.provider,
+        memory=False if args.no_memory else True,
         verbose=args.verbose
     )
 
