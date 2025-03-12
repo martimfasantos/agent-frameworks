@@ -29,7 +29,8 @@ class Agent:
         self, 
         provider: str = "openai", 
         memory: bool = True,
-        verbose: bool = False
+        verbose: bool = False,
+        tokens: bool = False
     ):
         """
         Initialize the Agno agent.
@@ -80,10 +81,13 @@ class Agent:
             show_tool_calls=True if verbose else False
         )
 
+        self.tokens = tokens
+
         # Extras: 
         self.tools_descriptions = get_tools_descriptions(
             [(tool.name, getattr(tool, 'description', str(tool))) for tool in self.tools]
         )
+
 
 
 
@@ -140,7 +144,17 @@ class Agent:
             # Send message to the agent
             response = self.agent.run(message)
 
-            return response.content
+            if self.tokens:
+                tokens = {
+                    "total_embedding_token_count": 0,
+                    "prompt_llm_token_count": sum(response.metrics["prompt_tokens"]),
+                    "completion_llm_token_count": sum(response.metrics["completion_tokens"]),
+                    "total_llm_token_count": sum(response.metrics["total_tokens"]),
+                }
+            else:
+                tokens = {}
+
+            return response.content, tokens
 
         except Exception as e:
             print(f"Error in chat: {e}")
@@ -173,7 +187,8 @@ def main():
     agent = Agent(
         provider=args.provider,
         memory=False if args.no_memory else True,
-        verbose=args.verbose
+        verbose=args.verbose,
+        tokens=args.mode in ["metrics", "metrics-loop"]
     )
 
     execute_agent(agent, args)

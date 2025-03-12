@@ -7,7 +7,7 @@ import json
 from openai import OpenAI, AzureOpenAI
 
 from settings import settings
-from utils import get_tools_descriptions, parse_args, execute_agent
+from utils import get_tools_descriptions, parse_args, execute_agent, get_tokens
 
 # Prompt components
 from prompts import role, goal, instructions, knowledge
@@ -19,13 +19,13 @@ from settings import settings
 # # Initialize Tavily client - Not needed, we can leverage TavilyTools directly
 # tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
-
 class Agent:
     def __init__(
         self, 
         provider: str = "openai", 
         memory: bool = True,
-        verbose: bool = False
+        verbose: bool = False,
+        tokens: bool = False
     ):
         """
         Initialize the OpenAI agent.
@@ -58,6 +58,7 @@ class Agent:
         self.agent = self.model.chat.completions
 
         self.verbose = verbose
+        self.tokens = tokens
 
 
 
@@ -173,6 +174,13 @@ class Agent:
                 tools=self.tools
             )
 
+            tokens = {
+                "total_embedding_token_count": 0,
+                "prompt_llm_token_count": completion.usage.prompt_tokens,
+                "completion_llm_token_count": completion.usage.completion_tokens,
+                "total_llm_token_count": completion.usage.prompt_tokens + completion.usage.completion_tokens
+            }
+
             response_message = completion.choices[0].message
             tool_calls = response_message.tool_calls
 
@@ -217,7 +225,13 @@ class Agent:
                 messages=messages,
             )
 
-            return completion2.choices[0].message.content
+
+            # Add the tokens from the second completion
+            tokens["prompt_llm_token_count"] += completion2.usage.prompt_tokens
+            tokens["completion_llm_token_count"] += completion2.usage.completion_tokens
+            tokens["total_llm_token_count"] += completion2.usage.prompt_tokens + completion2.usage.completion_tokens
+
+            return completion2.choices[0].message.content, tokens
 
         except Exception as e:
             print(f"Error in chat: {e}")
@@ -250,7 +264,8 @@ def main():
     agent = Agent(
         provider=args.provider,
         memory=False if args.no_memory else True,
-        verbose=args.verbose
+        verbose=args.verbose,
+        tokens=args.mode in ["metrics", "metrics-loop"]
     )
 
     execute_agent(agent, args)

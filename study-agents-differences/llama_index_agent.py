@@ -1,3 +1,4 @@
+import tiktoken
 from datetime import date
 from tavily import TavilyClient
 import json
@@ -11,6 +12,7 @@ from llama_index.core.agent import ReActAgent, FunctionCallingAgent
 from llama_index.core.tools import FunctionTool
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core import PromptTemplate
+from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
 
 # Prompt components
 from prompts import role, goal, instructions, knowledge
@@ -27,18 +29,23 @@ tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
+token_counter = TokenCountingHandler(
+    tokenizer=tiktoken.encoding_for_model("gpt-4").encode
+)
+
 class Agent:
     def __init__(
         self, 
         provider: str = "openai", 
         memory: bool = True,
-        verbose: bool = False
+        verbose: bool = False,
+        tokens: bool = False
     ):
         """
         Initialize the Llama-Index agent.
         """
         self.name = "Llama-Index ReAct Agent"
-        
+
         # Initialize the language model
         self.model = (
             AzureOpenAI(
@@ -46,6 +53,7 @@ class Agent:
                 api_base=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
                 api_version=settings.azure_api_version,
                 api_key=settings.azure_api_key.get_secret_value(),
+                callback_manager=CallbackManager([token_counter]) if tokens else None
             )
             if provider == "azure" and settings.azure_api_key
             else OpenAI(
@@ -68,6 +76,8 @@ class Agent:
             )
         else:
             chat_memory = None
+
+        self.tokens = tokens
 
         # Create the agent
         self.agent = ReActAgent.from_tools(
@@ -149,7 +159,18 @@ class Agent:
             # Send message to the agent
             response = self.agent.chat(message)
 
-            return str(response)
+            if self.tokens:
+                tokens = {
+                    "total_embedding_token_count": token_counter.total_embedding_token_count,
+                    "prompt_llm_token_count": token_counter.prompt_llm_token_count,
+                    "completion_llm_token_count": token_counter.completion_llm_token_count,
+                    "total_llm_token_count": token_counter.total_llm_token_count
+                }
+                token_counter.reset_counts()
+            else:
+                tokens = {}
+
+            return str(response), tokens
 
         except Exception as e:
             print(f"Error in chat: {e}")
@@ -180,8 +201,9 @@ def main():
 
     agent = Agent(
         provider=args.provider,
-        memory=False if args.no_memory else True,
-        verbose=args.verbose
+        memory=not args.no_memory,
+        verbose=args.verbose,
+        tokens=args.mode in ["metrics", "metrics-loop"]
     )
 
     execute_agent(agent, args)

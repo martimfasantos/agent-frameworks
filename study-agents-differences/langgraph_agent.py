@@ -36,7 +36,8 @@ class Agent:
         self, 
         provider: str = "openai", 
         memory: bool = True,
-        verbose: bool = False
+        verbose: bool = False, 
+        tokens: bool = False
     ):
         """
         Initialize the LangGraph agent using create_react_agent.
@@ -53,6 +54,8 @@ class Agent:
             self.memory = None
         # Memory will be checkpointed per thread. We will start with thread id 1.
         self.thread_id = 1
+
+        self.tokens = tokens
 
         # Create the prompt
         self.prompt = self._create_prompt()
@@ -167,6 +170,7 @@ class Agent:
             inputs = {"messages": [("user", message)]}
             config = {"configurable": {"thread_id": str(self.thread_id)}}
 
+
             # Stream the graph updates and collect the final response
             full_response = ""
             for event in self.graph.stream(inputs, config=config, stream_mode="values"):
@@ -174,8 +178,24 @@ class Agent:
                     last_message = event["messages"][-1]
                     if hasattr(last_message, "content"):
                         full_response = last_message.content
+            
+            if self.tokens:
+                tokens = {
+                    "total_embedding_token_count": 0,
+                    "prompt_llm_token_count": 0,
+                    "completion_llm_token_count": 0,
+                    "total_llm_token_count": 0,
+                }
+                for message in event["messages"]: # last event contains all messages
+                    if message.response_metadata:
+                        token_usage = message.response_metadata["token_usage"]
+                        tokens["prompt_llm_token_count"] += token_usage["prompt_tokens"]
+                        tokens["completion_llm_token_count"] += token_usage["completion_tokens"]
+                        tokens["total_llm_token_count"] += token_usage["total_tokens"]
+            else:
+                tokens = {}
 
-            return full_response
+            return full_response, tokens
 
         except Exception as e:
             print(f"Error in chat: {e}")
@@ -206,7 +226,8 @@ def main():
     agent = Agent(
         provider=args.provider,
         memory=False if args.no_memory else True,
-        verbose=args.verbose
+        verbose=args.verbose,
+        tokens=args.mode in ["metrics", "metrics-loop"]
     )
 
     execute_agent(agent, args)
