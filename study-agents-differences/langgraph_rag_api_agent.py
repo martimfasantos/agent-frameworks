@@ -1,31 +1,34 @@
 import os
-from datetime import date
-from pyexpat import model
-from tracemalloc import start
-from tavily import TavilyClient
-import json
 import time
 
 # LangGraph and LangChain imports
 from typing import Annotated, TypedDict
+from langchain.tools.retriever import create_retriever_tool
+from langchain_openai import AzureChatOpenAI, ChatOpenAI, OpenAIEmbeddings, AzureOpenAIEmbeddings
+from langchain_core.documents import Document
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.document_loaders import DirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langgraph.graph.message import add_messages
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import create_react_agent
 from langchain_openai import AzureChatOpenAI, ChatOpenAI
 from langchain_huggingface import ChatHuggingFace
-from langchain_core.tools import Tool
+from langchain.tools import Tool, tool
 from langchain_core.prompts import ChatPromptTemplate
 
 from utils import get_tools_descriptions, parse_args, execute_agent
 
 # Prompt components
-from prompts import role, goal, instructions, knowledge
+from prompts import knowledge, role, goal, instructions
+
+# Tools
+from shared_functions import F1API, MetroAPI
 
 # Load environment variables
 from settings import settings
-
-# Initialize Tavily client
-tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
 
 # LangGraph specific - Define the state for the graph
@@ -33,7 +36,7 @@ class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-class Agent:
+class LangGraphRAGandAPIAgent:
     def __init__(
         self, 
         provider: str = "openai", 
@@ -44,7 +47,7 @@ class Agent:
         """
         Initialize the LangGraph agent using create_react_agent.
         """
-        self.name = "LangGraph Agent"
+        self.name = "LangGraph RAG & API Agent"
 
         # Create tools
         self.tools = self._create_tools()
@@ -96,26 +99,77 @@ class Agent:
 
 
     @staticmethod
-    def date_tool(tool_input={}):
+    def load_documents(url: str) -> list[Document]:
         """
-        Function to get the current date.
+        Load all docs from a folder and return them as a list of Document.
+
+        Args:
+            urls (list[str]): A list of URLs to load the documents from.
+        Returns:
+            List[Document]: A list of Document objects.
         """
-        today = date.today()
-        return today.strftime("%B %d, %Y")
+        return DirectoryLoader(url, glob="*.md", show_progress=True).load()
 
     @staticmethod
-    def web_search_tool(query: str):
+    def create_vectorstore(documents: list[Document]) -> Chroma:
         """
-        This function searches the web for the given query and returns the results.
+        Create a simple vectorstore using the in memory Chroma
         """
-        # Call Tavily's search and dump the results as a JSON string
-        search_response = tavily_client.search(query)
-        results = json.dumps(search_response.get('results', []))
-        # print("Web Search Tool was called!")
-        # print(f"Web Search Results for '{query}':")
-        # print(results)
-        return results
+        # text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+        #     model_name=settings.embeddings_model_name,
+        #     chunk_size=1024, chunk_overlap=50
+        # )
+        # doc_splits = text_splitter.split_documents(documents)
+        
+        vectorstore = Chroma.from_documents(
+            documents=documents,
+            embedding= (
+                AzureOpenAIEmbeddings(
+                    base_url=f"{settings.azure_endpoint}/deployments/{settings.embeddings_model_name}",
+                    api_version=settings.embeddings_api_version,
+                    api_key=settings.azure_api_key.get_secret_value(),
+                ) if settings.azure_api_key else
+                FastEmbedEmbeddings()
+            ),
+            collection_name="local-rag"
+        )
+        return vectorstore
+    
+    @staticmethod
+    def create_rag_tool():
+        """
+        RAG tool that loads documents, creates a vectorstore, and returns a retriever tool.
+        """
+        # Load documents
+        docs = LangGraphRAGandAPIAgent.load_documents("knowledge_base/cl_matches/")
+        # Create the vectorstore/index        
+        vectorstore = LangGraphRAGandAPIAgent.create_vectorstore(docs)
 
+        # Create the retriever tool
+        return create_retriever_tool(
+            vectorstore.as_retriever(),
+            name="RAG_tool",
+            description="Search and retrieve information from the knowledge base about the matches of the 2025 UEFA Champions League.",
+        )
+    
+    @tool
+    @staticmethod
+    def get_driver_info(driver_number: int, session_key: int = 9158) -> str:
+        """Useful function to get F1 drivers information."""
+        return F1API.get_driver_info(driver_number, session_key)
+    
+    @tool # this is MUST exists when the tool receives no arguments
+    @staticmethod
+    def get_state_subway() -> str:
+        """Useful function to get state subway information."""
+        return MetroAPI.get_state_subway()
+    
+    @tool
+    @staticmethod
+    def get_times_next_two_subways_in_station(station: str) -> str:
+        """Useful to get the time (in seconds) of the next two subways in a station."""
+        return MetroAPI.get_times_next_two_subways_in_station(station)
+    
     def _create_tools(self):
         """
         Create tools for the agent.
@@ -124,16 +178,12 @@ class Agent:
             List of tools
         """
         return [
-            Tool(
-                name="date_tool",
-                func=self.date_tool,
-                description="Useful for getting the current date"
-            ),
-            Tool(
-                name="web_search_tool",
-                func=self.web_search_tool,
-                description="Useful for searching the web for information"
-            )
+            # RAG tool
+            self.create_rag_tool(),
+            # API tools - MetroAPI and F1API - Created using @tool
+            self.get_driver_info,
+            self.get_state_subway,
+            self.get_times_next_two_subways_in_station
         ]
 
     def _create_prompt(self):
@@ -144,7 +194,7 @@ class Agent:
             ChatPromptTemplate
         """
         return ChatPromptTemplate.from_messages([
-            ("system", "\n".join([role, goal, instructions, knowledge])),
+            ("system", "\n".join([knowledge, role, goal, instructions])),
             ("placeholder", "{messages}"),
         ])
 
@@ -228,7 +278,7 @@ def main():
     
     args = parse_args()
 
-    agent = Agent(
+    agent = LangGraphRAGandAPIAgent(
         provider=args.provider,
         memory=False if args.no_memory else True,
         verbose=args.verbose,

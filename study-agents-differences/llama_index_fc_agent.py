@@ -1,6 +1,8 @@
 import os
 import sys
 import logging
+import time
+import tiktoken
 from datetime import date
 from litellm import api_base, azure_embedding_models
 from openai import azure_endpoint
@@ -13,6 +15,7 @@ from llama_index.llms.openai import OpenAI
 from llama_index.llms.azure_openai import AzureOpenAI
 from llama_index.llms.huggingface_api import HuggingFaceInferenceAPI
 from llama_index.core.agent import FunctionCallingAgent, FunctionCallingAgentWorker
+from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
 from llama_index.core.tools import FunctionTool
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core import PromptTemplate
@@ -29,15 +32,17 @@ from settings import settings
 # Initialize Tavily client
 tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
-# logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-# # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+token_counter = TokenCountingHandler(
+    tokenizer=tiktoken.encoding_for_model("gpt-4").encode
+)
 
 class Agent:
     def __init__(
         self, 
         provider: str = "openai", 
         memory: bool = True,
-        verbose: bool = False
+        verbose: bool = False,
+        tokens: bool = False
     ):
         """
         Initialize the Llama-Index agent.
@@ -51,6 +56,7 @@ class Agent:
                 api_base=f"{settings.azure_endpoint}/deployments/{settings.azure_deployment_name}",
                 api_version=settings.azure_api_version,
                 api_key=settings.azure_api_key.get_secret_value(),
+                callback_manager=CallbackManager([token_counter]) if tokens else None
             )
             if provider == "azure" and settings.azure_api_key
             else OpenAI(
@@ -142,9 +148,23 @@ class Agent:
         """
         try:
             # Send message to the agent
+            start = time.perf_counter()
             response = self.agent.chat(message)
+            end = time.perf_counter()
+            exec_time = end - start
 
-            return str(response)
+            if self.tokens:
+                tokens = {
+                    "total_embedding_token_count": token_counter.total_embedding_token_count,
+                    "prompt_llm_token_count": token_counter.prompt_llm_token_count,
+                    "completion_llm_token_count": token_counter.completion_llm_token_count,
+                    "total_llm_token_count": token_counter.total_llm_token_count
+                }
+                token_counter.reset_counts()
+            else:
+                tokens = {}
+
+            return str(response), exec_time, tokens
 
         except Exception as e:
             print(f"Error in chat: {e}")

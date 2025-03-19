@@ -1,19 +1,25 @@
 import tiktoken
-from datetime import date
-from tavily import TavilyClient
-import json
 import time
-
 
 # Llama-Index imports
 from llama_index.llms.openai import OpenAI
 from llama_index.llms.azure_openai import AzureOpenAI
 from llama_index.llms.huggingface_api import HuggingFaceInferenceAPI
-from llama_index.core.agent import ReActAgent, FunctionCallingAgent
+from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core import Document
+from llama_index.core.agent import ReActAgent
 from llama_index.core.tools import FunctionTool
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core import PromptTemplate
 from llama_index.core.callbacks import CallbackManager, TokenCountingHandler
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.core.tools import FunctionTool, RetrieverTool
+from llama_index.llms.azure_openai import AzureOpenAI
+from llama_index.core.agent import ReActAgent
+from llama_index.core.tools import FunctionTool
+from llama_index.core.memory import ChatMemoryBuffer
+from llama_index.core import PromptTemplate
 
 # Prompt components
 from prompts import role, goal, instructions, knowledge
@@ -21,20 +27,18 @@ from prompts import llama_index_react_prompt # extra import
 
 from utils import get_tools_descriptions, parse_args, execute_agent
 
+# Tools
+from shared_functions import F1API, MetroAPI
+
 # Load environment variables
 from settings import settings
-
-# Initialize Tavily client
-tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
-
-# logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-# # logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 token_counter = TokenCountingHandler(
     tokenizer=tiktoken.encoding_for_model("gpt-4").encode
 )
 
-class Agent:
+
+class LlamaIndexRAGandAPIAgent:
     def __init__(
         self, 
         provider: str = "openai", 
@@ -87,13 +91,13 @@ class Agent:
             memory=chat_memory,
             # context="If the user asks a question the you already know the answer"
             #         "just respond without calling any tools.",
-            verbose=True if verbose else False
+            # verbose=True if verbose else False
         )
 
         # Customize the system prompt with our own instructions - ReActAgent specific
-        updated_system_prompt = PromptTemplate("\n".join([role, goal, instructions, knowledge, llama_index_react_prompt]))
-        self.agent.update_prompts({"agent_worker:system_prompt": updated_system_prompt})
-        self.agent.reset()
+        # updated_system_prompt = PromptTemplate("\n".join([role, goal, instructions, knowledge, llama_index_react_prompt]))
+        # self.agent.update_prompts({"agent_worker:system_prompt": updated_system_prompt})
+        # self.agent.reset()
 
         # Extras:
         self.tools_descriptions = get_tools_descriptions(
@@ -101,49 +105,78 @@ class Agent:
         )
 
 
-
     @staticmethod
-    def date_tool():
+    def load_documents(docs_path: str) -> list[Document]:
         """
-        Function to get the current date.
-        """
-        today = date.today()
-        return today.strftime("%B %d, %Y")
-
-    @staticmethod
-    def web_search_tool(query: str):
-        """
-        This function searches the web for the given query and returns the results.
-        """
-        # Call Tavily's search and dump the results as a JSON string
-        search_response = tavily_client.search(query)
-        results = json.dumps(search_response.get('results', []))
-        # print(f"Web Search Results for '{query}':")
-        # print(results)
-        return results
-
-    def _create_tools(self):
-        """
-        Create tools for the agent.
-
+        Load all docs from a folder and return them as a list of Document.
+        Args:
+            docs_path (str): A path to the directory containing the documents.
         Returns:
-            List of tools
+            List[Document]: A list of Document objects.
         """
+        return SimpleDirectoryReader(docs_path).load_data()
+
+    @staticmethod
+    def create_vectorstore_index(documents: list[Document]) -> VectorStoreIndex:
+        """
+        Create a simple vectorstore using VectorStoreIndex
+        """
+        splitter = SentenceSplitter(chunk_size=1024, chunk_overlap=50)
+        nodes = splitter.get_nodes_from_documents(documents)
+        
+        return VectorStoreIndex(
+            nodes,
+            embed_model= (
+                OpenAIEmbedding(
+                    api_key=settings.openai_api_key.get_secret_value(),
+                    id=settings.embeddings_model_name,
+                )
+                if settings.openai_api_key
+                else f"local:{settings.local_embeddings_model_name}"
+            ),
+        )
+    
+    @staticmethod
+    def create_rag_tool() -> RetrieverTool:
+        """
+        RAG tool that loads documents, creates a vectorstore, and returns a query engine tool.
+        """
+        # Load documents
+        docs = LlamaIndexRAGandAPIAgent.load_documents("knowledge_base/cl_matches")
+        # Create the vectorstore/index        
+        vector_index = LlamaIndexRAGandAPIAgent.create_vectorstore_index(docs)
+
+        # Create the retriever tool - We use a retriever tool to query the knowledge base
+        # because we want a tool that only return information gathered from the knowledge base
+        # and does not reason or generate new information. (This happens with QueryEngineTool)
+        return RetrieverTool.from_defaults(
+            retriever=vector_index.as_retriever(),
+            name="RAG_tool",
+            description="Search and retrieve information about the matches of the 2025 UEFA Champions League."
+        )
+
+    
+    def _create_tools(self):
         return [
+            # RAG Tool
+            self.create_rag_tool(),
+            # API Tools
             FunctionTool.from_defaults(
-                fn=self.date_tool,
-                name="date_tool",
-                description="Useful for getting the current date"
+                F1API.get_driver_info,
+                name="get_driver_info",
+                description="This tool is used to search for information about a driver",
             ),
             FunctionTool.from_defaults(
-                fn=self.web_search_tool,
-                name="web_search_tool",
-                description="Useful for searching the web for information"
+                MetroAPI.get_state_subway,
+                name="get_state_subway",
+                description="This tool is used to search for information about the state of the subway",
+            ),
+            FunctionTool.from_defaults(
+                MetroAPI.get_times_next_two_subways_in_station,
+                name="get_times_next_two_subways_in_station",
+                description="This tool is used to search for information about the times (in seconds) of the next two subways in a station",
             )
         ]
-        # ] + TavilyToolSpec(
-        #         api_key=settings.tavily_api_key.get_secret_value(),
-        #     ).to_tool_list()
         
 
     def chat(self, message):
@@ -203,7 +236,7 @@ def main():
 
     args = parse_args()
 
-    agent = Agent(
+    agent = LlamaIndexRAGandAPIAgent(
         provider=args.provider,
         memory=not args.no_memory,
         verbose=args.verbose,

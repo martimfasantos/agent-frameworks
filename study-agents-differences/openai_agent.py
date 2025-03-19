@@ -2,6 +2,7 @@ from datetime import date
 from json import tool
 from tavily import TavilyClient
 import json
+import time
 
 # Llama-Index imports
 from openai import OpenAI, AzureOpenAI
@@ -158,6 +159,7 @@ class Agent:
         """
         try:
 
+            start = time.perf_counter()
             messages = [
                 self.prompt,
                 {"role": "user", "content": message}
@@ -225,13 +227,16 @@ class Agent:
                 messages=messages,
             )
 
+            end = time.perf_counter()
+            exec_time = end - start
+
 
             # Add the tokens from the second completion
             tokens["prompt_llm_token_count"] += completion2.usage.prompt_tokens
             tokens["completion_llm_token_count"] += completion2.usage.completion_tokens
             tokens["total_llm_token_count"] += completion2.usage.prompt_tokens + completion2.usage.completion_tokens
 
-            return completion2.choices[0].message.content, tokens
+            return completion2.choices[0].message.content, exec_time, tokens
 
         except Exception as e:
             print(f"Error in chat: {e}")

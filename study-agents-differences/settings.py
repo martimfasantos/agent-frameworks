@@ -12,6 +12,9 @@ class Settings(BaseSettings):
     azure_api_key: pydantic.SecretStr
     open_source_model_name: str = "watt-ai/watt-tool-70B"
     tavily_api_key: pydantic.SecretStr
+    embeddings_model_name: str = "text-embedding-ada-002"
+    embeddings_api_version: str = "2023-05-15"
+    local_embeddings_model_name: str
 
     class Config:
         env_file = ".env"

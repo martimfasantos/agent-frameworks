@@ -1,7 +1,6 @@
-from datetime import date
-from tavily import TavilyClient
-import json
+import os
 import time
+from datetime import date
 
 # Agno imports
 from agno.models.openai import OpenAIChat
@@ -9,23 +8,34 @@ from agno.models.azure import AzureOpenAI
 from agno.agent import Agent as AgnoAgent
 from agno.memory import AgentMemory
 from agno.tools import tool
-from agno.tools.tavily import TavilyTools
 from agno.models.huggingface import HuggingFace
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.models.azure import AzureOpenAI
+from agno.models.openai import OpenAIChat
+from agno.tools import tool
+from agno.document.base import Document
+from agno.document.chunking.fixed import FixedSizeChunking
+from agno.knowledge.document import DocumentKnowledgeBase
+from agno.vectordb.chroma import ChromaDb
+from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.azure_openai import AzureOpenAIEmbedder
+from agno.memory import AgentMemory
 
 from settings import settings
 from utils import get_tools_descriptions, parse_args, execute_agent
 
 # Prompt components
-from prompts import role, goal, instructions, knowledge
+from prompts import knowledge, role, goal, instructions
+
+# Tools
+from shared_functions import F1API, MetroAPI
 
 # Load environment variables
 from settings import settings
 
-# # Initialize Tavily client - Not needed, we can leverage TavilyTools directly
-# tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
-
-class Agent:
+class AgnoRAGandAPIAgent:
     def __init__(
         self, 
         provider: str = "openai", 
@@ -36,7 +46,7 @@ class Agent:
         """
         Initialize the Agno agent.
         """
-        self.name = "Agno Agent"
+        self.name = "Agno RAG & API Agent"
 
         self.model = ( #    NOTE: available in v1.1.8 after the PR: https://github.com/agno-agi/agno/pull/2273
             AzureOpenAI(
@@ -59,19 +69,30 @@ class Agent:
         # Create tools
         self.tools = self._create_tools()
 
+        # Load documents
+        docs = self.load_documents_from_folder("knowledge_base/cl_matches")
+        # Create the knowledge base
+        knowledge_base = self.create_knowledge_base(docs)
+
+        knowledge_base.load(recreate=True)
+
         # Create the Agent
         self.agent = AgnoAgent(
             name="Agno Agent",
-            # role="Search the web for information",
             model=self.model,
             tools=self.tools,
+            knowledge=knowledge_base, # <-- RAG is passed here as knowledge base
+            # Add a tool to search the knowledge base which enables agentic RAG.
+            # This is enabled by default when `knowledge` is provided to the Agent.
             # instructions="Always include sources",
             system_message="\n".join([
+                knowledge,
                 role,
                 goal,
                 instructions,
-                "You have access to two primary tools: date_tool and web_search_tool.",
-                knowledge
+                "You have access to the knowledge base about the matches of the 2025 UEFA Champions League "
+                "and the provided tools to get information about F1 drivers, the state of the subway, and the times "
+                "of the next two subways in a station.",
             ]),
             memory=AgentMemory(), # <-- even if memory is None, it will still be created when the agent runs
             add_history_to_messages=True if memory else False,
@@ -86,36 +107,77 @@ class Agent:
 
         # Extras: 
         self.tools_descriptions = get_tools_descriptions(
-            [(tool.name, getattr(tool, 'description', str(tool))) for tool in self.tools]
+            [("RAG_tool", "Knowledge base for the 2025 UEFA Champions League matches")] \
+            + [(self.get_date.name, self.get_date.description)] \
+            + F1API.list_functions() \
+            + MetroAPI.list_functions()
         )
 
+    @staticmethod
+    def load_documents_from_folder(docs_path: str) -> list[Document]:
+        """
+        Load all docs from a folder and return them as a list of Document.
 
+        Args:
+            docs_path: Path to the folder containing the documents
+        Returns:
+            List of documents
+        """
+        documents = []
+        for file_name in os.listdir(docs_path):
+            if file_name.endswith(".md"):
+                file_path = os.path.join(docs_path, file_name)
+                with open(file_path, encoding="utf-8") as file:
+                    content = file.read()
+                    documents.append(
+                        Document(content=content, meta_data={"file_name": file_name})
+                    )
+        return documents
+    
+    @staticmethod
+    def create_knowledge_base(documents: list[Document]) -> DocumentKnowledgeBase:
+        """
+        Create a knowledge base from a list of documents.
 
+        Args:
+            documents: List of documents
+        Returns:
+            DocumentKnowledgeBase
+        """
+        vector_db = ChromaDb(
+            embedder = (
+                AzureOpenAIEmbedder(
+                    base_url=f"{settings.azure_endpoint}/deployments/{settings.embeddings_model_name}",
+                    api_version=settings.embeddings_api_version,
+                    api_key=settings.azure_api_key.get_secret_value(),
+                )
+                if settings.azure_api_key
+                else f"local:{settings.local_embeddings_model_name}"
+            ),
+            collection="local-rag"
+        )
+
+        chunking_strategy = FixedSizeChunking(
+            chunk_size=1024, overlap=50
+        )
+
+        return DocumentKnowledgeBase(
+            documents=documents,
+            vector_db=vector_db,
+            chunking_strategy=chunking_strategy,
+            num_documents=2
+        )
+    
 
     @staticmethod
     @tool(name="date_tool", description="Gets the current date")
-    def date_tool():
+    def get_date():
         """
         Function to get the current date.
         """
         today = date.today()
         return today.strftime("%B %d, %Y")
 
-    # This tool is part of the TavilyTools toolkit, we can leverage it directly
-    @staticmethod
-    @tool(name="web_search_tool", description="Searches the web for information")
-    def web_search_tool(query: str):
-        """
-        This function searches the web for the given query and returns the results.
-        """
-        # Initialize Tavily client
-        tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
-        # Call Tavily's search and dump the results as a JSON string
-        search_response = tavily_client.search(query)
-        results = json.dumps(search_response.get('results', []))
-        # print(f"Web Search Results for '{query}':")
-        # print(results)
-        return results
 
     def _create_tools(self):
         """
@@ -125,10 +187,14 @@ class Agent:
             List of tools
         """
         return [
-            self.date_tool,
-            # self.web_search
-            TavilyTools(api_key=settings.tavily_api_key.get_secret_value()), # <-- we can levarage the integrated ToolKit directly
-            # NOTE: this won't show the print in the console, but it will return the tool call in the response
+            # RAG tool
+            # NOTE: Not passed here, passed as knowledge base to the agent
+            # Date tool
+            self.get_date,
+            # API tools
+            F1API.get_driver_info,
+            MetroAPI.get_state_subway,
+            MetroAPI.get_times_next_two_subways_in_station
         ]
 
     def chat(self, message):
@@ -188,7 +254,7 @@ def main():
 
     args = parse_args()
 
-    agent = Agent(
+    agent = AgnoRAGandAPIAgent(
         provider=args.provider,
         memory=False if args.no_memory else True,
         verbose=args.verbose,

@@ -120,11 +120,9 @@ def execute_agent(agent: object, args: argparse.Namespace):
                     )
                     if args.verbose:
                         print("New agent created.")
-                start = time.time()
-                response, token_counter = agent.chat(query)
-                end = time.time()
+                response, exec_time, token_counter = agent.chat(query)
                 # Add time taken to respond and update token counts
-                response_times.append(end - start)
+                response_times.append(exec_time)
                 for key, value in token_counter.items():
                     tokens_counter[key] += value
                 

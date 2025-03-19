@@ -1,0 +1,983 @@
+Assistant: Na estação de CG, o tempo de espera para os próximos subways é de 50 segundos e 252 segundos.
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, aqui estão os detalhes:
+
+- **Nome Completo:** Lewis Hamilton
+- **Nome de Transmissão:** L HAMILTON
+- **Equipa:** Mercedes
+- **Cores da Equipa:** #6CD3BF
+- **País:** Reino Unido
+- ![Foto do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton:
+- **Nome**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **País**: GBR (Reino Unido)
+- ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos.
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44:
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: Grã-Bretanha
+- ![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+Quanto ao estado da linha vermelha, está **OK**.
+
+Sobre o piloto de F1 número 44:
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação CG**: 50 segundos para o próximo trem e 252 segundos para o seguinte.
+- **Estado da linha vermelha**: Está **Ok**.
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **Código do país**: GBR
+  - ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos para o próximo metrô e 252 segundos para o segundo.
+- **Estado da linha vermelha**: Ok.
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **Código do país**: GBR
+  - ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png) 
+
+Se precisar de mais alguma informação, avise!
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos para o próximo e 252 segundos para o segundo.
+- **Estado da linha vermelha**: Ok.
+  
+### Informação do piloto de F1 número 44:
+- **Nome completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Código da equipe**: HAM
+- **País**: Reino Unido
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está Ok, assim como as outras linhas.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele compete pela equipe Mercedes. Aqui estão algumas informações adicionais:
+
+- Nome completo: Lewis Hamilton
+- Acrônimo: HAM
+- Cor da equipe: #6CD3BF
+- País: Grã-Bretanha
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: **Tempo de espera na estação de CG:**  
+- 1ª chegada: 50 segundos  
+- 2ª chegada: 252 segundos  
+
+**Estado da linha vermelha:** Ok  
+
+**Informação do piloto de F1 número 44:**
+- Nome: Lewis Hamilton
+- Equipe: Mercedes
+- País: GBR
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está "Ok". 
+
+Quanto ao piloto de Fórmula 1 número 44, Lewis Hamilton, ele corre pela equipe da Mercedes. Aqui está a informação relevante:
+
+- Nome completo: Lewis Hamilton
+- Acrônimo: HAM
+- País: Grã-Bretanha
+- Equipe: Mercedes
+- Cor da equipe: #6CD3BF
+![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+Quanto ao estado da linha vermelha, ele está **ok**.
+
+O piloto de F1 número 44 é **Lewis Hamilton**. Aqui estão os detalhes:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: GBR (Reino Unido)
+- ![Foto do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos e 252 segundos para os próximos dois subways.
+
+O estado da linha vermelha está ok, assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44:
+- **Nome completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Cores da equipe**: #6CD3BF
+- **País**: GBR
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos. 
+
+Quanto ao estado da linha vermelha, está "Ok". As outras linhas também estão em bom estado.
+
+Respecto ao piloto de F1 número 44, Lewis Hamilton, aqui estão as informações:
+
+- **Nome Completo:** Lewis Hamilton
+- **Equipa:** Mercedes
+- **Código do País:** GBR (Reino Unido)
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais alguma informação, é só avisar!
+Assistant: Na estação de CG, o tempo de espera até o próximo metro é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele pertence à equipe Mercedes. Aqui estão os detalhes:
+
+- Nome completo: Lewis Hamilton
+- Nacionalidade: GBR (Grã-Bretanha)
+- Equipe: Mercedes
+- Cor da equipe: ![#6CD3BF](https://placehold.co/15x15/6CD3BF/6CD3BF.png) (#6CD3BF)
+  
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo metrô é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Sobre o piloto de F1 número 44, Lewis Hamilton:
+- **Nome completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Acrónimo**: HAM
+- **País**: GBR
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o segundo. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui está a informação:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- Código do país: GBR
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos para o próximo metrô e 252 segundos para o segundo.
+- **Estado da linha vermelha**: Ok.
+  
+### Informação do piloto de F1 número 44:
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Código do país**: GBR
+- ![Imagem do Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo metro é de 50 segundos e 252 segundos para o segundo. 
+
+O estado da linha vermelha está "Ok", assim como as restantes linhas (amarela, azul e verde).
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele é da equipa Mercedes. Aqui está a sua informação:
+
+- **Nome:** Lewis Hamilton
+- **Equipa:** Mercedes
+- **País:** Grã-Bretanha
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o seguinte. O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+
+- Nome completo: Lewis Hamilton
+- Equipa: Mercedes
+- País: Grã-Bretanha (GBR)
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais alguma coisa, é só dizer!
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo trem e 252 segundos para o segundo.
+
+Quanto ao estado da linha vermelha, está **Ok**.
+
+Sobre o piloto de F1 número 44, Lewis Hamilton:
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: Reino Unido
+- ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha está **Ok**.
+
+**Informação do piloto de F1 número 44:**
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- Código do país: GBR
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo metro é de 50 segundos e 252 segundos para o segundo.
+
+Quanto ao estado da linha vermelha, está "Ok".
+
+Em relação ao piloto de F1 número 44, Lewis Hamilton, ele corre pela equipe Mercedes. Aqui estão alguns detalhes:
+
+- Nome completo: Lewis Hamilton
+- Acrónimo: HAM
+- País: Reino Unido
+- Cores da equipa: ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) (sexto código de cor)
+  
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está **Ok**, assim como as linhas amarela, azul e verde.
+
+O piloto de F1 número 44 é Lewis Hamilton, que corre para a equipe Mercedes. Aqui está sua imagem:
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele corre pela equipa Mercedes. Aqui estão os detalhes:
+
+- **Nome completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Código do país**: GBR
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+Quanto ao estado da linha vermelha, está "Ok", assim como as linhas amarela, azul e verde.
+
+Sobre o piloto de F1 número 44, Lewis Hamilton:
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: Reino Unido
+- ![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png) 
+
+Se precisar de mais informações, estou à disposição!
+Assistant: Na estação de CG, o tempo de espera para os próximos subways é de 50 e 252 segundos. 
+
+Quanto ao estado da linha vermelha, está **Ok**.
+
+Sobre o piloto número 44, Lewis Hamilton:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Cores da Equipa**: ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) 
+- **País**: Reino Unido
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos até o próximo trem, e 252 segundos até o segundo.
+  
+- **Estado da linha vermelha**: Ok.
+
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **País**: GBR (Reino Unido)
+  - ![Foto do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está **ok**.
+
+Sobre o piloto de F1 número 44:
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - Tempo de espera na estação de CG: 50 segundos para o próximo trem e 252 segundos para o segundo.
+- Estado da linha vermelha: Está Ok.
+  
+Informação do piloto de F1 número 44:
+- Nome: Lewis Hamilton
+- Equipe: Mercedes
+- Aceleração: HAM
+- País: Reino Unido
+  
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte. 
+
+Quanto ao estado da linha vermelha, ela está **Ok**.
+
+Sobre o piloto de F1 número 44:
+- **Nome**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Cores da equipa**: #6CD3BF
+- **Imagem**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png) 
+- **País**: Reino Unido (GBR)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte. 
+
+O estado da linha vermelha está **Ok**, assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão as informações:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- Acrónimo: HAM
+- País: GBR (Reino Unido)
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos até o próximo metrô e 252 segundos até o segundo.
+- **Estado da linha vermelha**: Ok.
+- **Informação do piloto de F1 número 44**: 
+  - Nome: Lewis Hamilton
+  - Equipe: Mercedes
+  - País: GBR (Reino Unido)
+  - ![Foto do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Aqui estão as informações que você pediu:
+
+- **Tempo de espera na estação de CG**: 50 segundos para o próximo trem e 252 segundos para o segundo.
+- **Estado da linha vermelha**: Ok.
+- **Informação do piloto de F1 número 44**: 
+  - Nome: Lewis Hamilton
+  - Team: Mercedes
+  - País: Reino Unido
+  - ![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais informações, é só avisar!
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo trem e 252 segundos para o segundo.
+
+O estado da linha vermelha é "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele é da equipe Mercedes. Aqui estão mais informações:
+
+- Nome completo: Lewis Hamilton
+- País: Reino Unido (GBR)
+- Equipe: Mercedes
+- Cor da equipe: #6CD3BF
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metro e 252 segundos para o segundo.
+
+O estado da linha vermelha está **OK**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Cor da Equipe**: #6CD3BF
+- **País**: Reino Unido
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Aqui está a informação que solicitaste:
+
+**Tempo de Espera na Estação de CG:**
+- Para o próximo metrô: 50 segundos
+- Para o segundo metrô: 252 segundos
+
+**Estado da Linha Vermelha:** 
+- Ok
+
+**Informação do Piloto de F1 Número 44:**
+- **Nome:** Lewis Hamilton
+- **Equipa:** Mercedes
+- **Código da Equipa:** HAM
+- **País:** Reino Unido (GBR)
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisares de mais alguma informação, estou à disposição!
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha é "Ok", assim como as linhas amarela, azul e verde. 
+
+Relativamente ao piloto de F1 número 44, Lewis Hamilton, aqui estão as informações:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: Reino Unido
+- ![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subúrbios é de 50 segundos e 252 segundos. 
+
+A linha vermelha está em estado "Ok". 
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton é o nome dele. Ele corre para a equipe Mercedes. Aqui está uma imagem dele:
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo subway é de 50 segundos e 252 segundos para o segundo.
+
+O estado da linha vermelha é "Ok".
+
+Quanto ao piloto de F1 número 44, aqui está a informação:
+
+- **Nome**: Lewis Hamilton
+- **Time**: Mercedes
+- **País**: Grã-Bretanha
+- **Imagem**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de **50 segundos** para o próximo trem e **252 segundos** para o segundo.
+
+O estado da linha vermelha está **Ok**, assim como as linhas amarela, azul e verde.
+
+A informação do piloto de F1 número 44 é a seguinte:
+- **Nome:** Lewis Hamilton
+- **Equipe:** Mercedes
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos subways é de 50 e 252 segundos. O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+
+- **Nome Completo:** Lewis Hamilton
+- **Time:** Mercedes
+- **Acrónimo:** HAM
+- **Cores do Time:** #6CD3BF
+- **País:** GBR (Reino Unido)
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, aqui estão os detalhes:
+
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **País**: Reino Unido
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo metrô é de 50 segundos e o segundo metrô chega em 252 segundos. 
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele faz parte da equipe Mercedes. Aqui estão mais informações sobre ele:
+
+- Nome completo: Lewis Hamilton
+- Acrônimo: HAM
+- País: GBR (Reino Unido)
+- Equipe: Mercedes
+- Cores da equipe: ![Cor da equipe](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo subway e 252 segundos para o seguinte.
+
+Quanto à linha vermelha, o estado é "Ok".
+
+Sobre o piloto número 44, Lewis Hamilton:
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: Reino Unido
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está Ok.
+
+Sobre o piloto número 44, Lewis Hamilton, ele corre pela equipe Mercedes. Aqui estão alguns detalhes:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: GBR (Reino Unido)
+- ![Foto do Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos subways é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão as informações:
+
+- Nome completo: **Lewis Hamilton**
+- Equipa: **Mercedes**
+- País: **Reino Unido (GBR)**
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais alguma informação, basta dizer!
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha é "Ok".
+
+Informação do piloto de F1 número 44:
+- Nome: Lewis Hamilton
+- Equipe: Mercedes
+- País: Reino Unido
+- ![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. O estado da linha vermelha está ok, assim como as outras linhas (amarela, azul e verde).
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele corre pela equipe Mercedes. Aqui estão os detalhes:
+
+- **Nome**: Lewis Hamilton
+- **Team Name**: Mercedes
+- **Cores da equipe**: ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) 
+- **País**: GBR (Grã-Bretanha)
+- **Imagem**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais informações, avise!
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha está Ok.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton:
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **País**: GBR (Reino Unido)
+- ![Imagem do Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, aqui estão os detalhes:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Código do País**: GBR (Reino Unido)
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha é **Ok**.
+
+Quanto ao piloto de F1 número 44, a informação é a seguinte:
+- Nome completo: **Lewis Hamilton**
+- Nome abreviado: **HAM**
+- Equipe: **Mercedes**
+- País: **GBR**
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha é "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+
+- **Nome completo**: Lewis Hamilton
+- **Nome da equipe**: Mercedes
+- **Cor da equipe**: #6CD3BF
+- **País**: GBR
+- ![Foto do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele pertence à equipe Mercedes. Aqui estão mais algumas informações:
+
+- Nome completo: Lewis Hamilton
+- Acrônimo: HAM
+- País: Grã-Bretanha
+- Cor da equipe: ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) 
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos (1ª chegada), 252 segundos (2ª chegada).
+- **Estado da linha vermelha**: Ok.
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Time**: Mercedes
+  - **Foto**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha está Ok, assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele faz parte da equipe Mercedes. Aqui estão alguns detalhes:
+
+- Nome: Lewis Hamilton
+- Equipe: Mercedes
+- País: GBR (Reino Unido)
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+O estado da linha vermelha está "Ok".
+
+Sobre o piloto de F1 número 44:
+- **Nome:** Lewis Hamilton
+- **Equipe:** Mercedes
+- **Acrónimo:** HAM
+- **País:** GBR (Reino Unido)
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44:
+
+- **Nome Completo:** Lewis Hamilton
+- **Equipe:** Mercedes
+- **País:** Reino Unido
+- **Acrônimo:** HAM
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo metrô é de 50 segundos e o segundo em 252 segundos. 
+
+O estado da linha vermelha está "Ok", assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton é o seu nome completo. Ele compete pela equipe Mercedes. Aqui está uma imagem dele:
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o seguinte. 
+
+Quanto ao estado da linha vermelha, está "Ok". Todas as linhas (amarela, azul, verde, e vermelha) estão funcionando sem problemas.
+
+Sobre o piloto de F1 número 44:
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de Espera na Estação de CG**: 50 segundos para o próximo metrô e 252 segundos para o subsequente.
+- **Estado da Linha Vermelha**: Ok.
+- **Informação do Piloto de F1 Número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **País**: GBR
+  - ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para o próximo metro é de 50 segundos e 252 segundos.
+
+O estado da linha vermelha é "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+- Nome completo: Lewis Hamilton
+- Equipa: Mercedes
+- País: Reino Unido
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está OK, assim como todas as outras linhas.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele corre pela equipe Mercedes. Aqui estão alguns detalhes:
+
+- Nome: Lewis Hamilton
+- Equipe: Mercedes
+- Código da equipe: HAM
+- País: Grã-Bretanha
+  
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos até o próximo metrô e 252 segundos até o segundo.
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44:
+
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Cores da equipe**: ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) `#6CD3BF`
+- **País**: GBR (Reino Unido)
+- **Imagem**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+
+- **Nome Completo:** Lewis Hamilton
+- **Equipa:** Mercedes
+- **Código do País:** GBR
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metro e 252 segundos para o seguinte. 
+
+O estado da linha vermelha está **Ok**, assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele compete pela equipe Mercedes. Aqui estão os seus detalhes:
+
+- **Nome completo:** Lewis Hamilton
+- **Equipe:** Mercedes
+- **Cores da equipe:** ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) `#6CD3BF`
+- **País:** Reino Unido (GBR)
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: O tempo de espera na estação de CG é de 50 segundos para o próximo metrô e 252 segundos para o seguinte. 
+
+Quanto à linha vermelha, o estado é "Ok".
+
+O piloto de F1 número 44 é Lewis Hamilton, da equipe Mercedes. Aqui estão alguns detalhes:
+- Nome completo: Lewis Hamilton
+- Acrônimo: HAM
+- País: GBR
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele pertence à equipa Mercedes. Aqui estão os detalhes:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- País: GBR (Reino Unido)
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos.
+
+O estado da linha vermelha, assim como as linhas amarela, azul e verde, está **Ok**.
+
+Quanto ao piloto de Fórmula 1 número 44, Lewis Hamilton, ele corre pela equipe Mercedes. Aqui estão algumas informações sobre ele:
+
+- Nome completo: Lewis Hamilton
+- Nome de equipe: Mercedes
+- Cores da equipe: ![#6CD3BF](https://via.placeholder.com/15/6CD3BF/000000?text=+) `#6CD3BF`
+- País: GBR (Grã-Bretanha)
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos.
+
+O estado da linha vermelha está "Ok", assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44:
+- **Nome**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **País**: GBR (Reino Unido)
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44:
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR (Reino Unido)
+- **Nome Abreviado**: HAM
+- **Cor da Equipa**: #6CD3BF
+  
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - O tempo de espera na estação de CG é de 50 segundos até o próximo trem e 252 segundos até o seguinte.
+- O estado da linha vermelha está "Ok".
+- Informações do piloto número 44:
+  - Nome: Lewis Hamilton
+  - Equipe: Mercedes
+  - País: GBR (Grã-Bretanha)
+  - ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo trem e 252 segundos para o segundo.
+
+O estado da linha vermelha está "Ok", assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele compete pela equipa Mercedes. Aqui estão os detalhes:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **País**: Reino Unido
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44:
+- **Nome completo**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Cor da equipe**: #6CD3BF
+- **País**: Reino Unido
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - O tempo de espera na estação de CG é de **50 segundos** para o próximo subway e **252 segundos** para o subsequente.
+- O estado da linha vermelha está **Ok**.
+- Informações do piloto de F1 número 44:
+  - Nome: **Lewis Hamilton**
+  - Equipa: **Mercedes**
+  - País: **Reino Unido**
+  - ![Foto do Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo subway e 252 segundos para o seguinte.
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele compete pela Mercedes. Aqui estão alguns detalhes sobre ele:
+
+- **Nome completo**: Lewis Hamilton
+- **País**: GBR
+- **Equipe**: Mercedes
+- **Cores da equipe**: ![Cores da equipe](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais informações, é só avisar!
+Assistant: - **Estação CG**: O tempo de espera para o próximo metrô é de **50 segundos** e **252 segundos** para o segundo.
+  
+- **Estado da Linha Vermelha**: A linha vermelha está **OK**.
+
+- **Piloto de F1 número 44**: 
+  - Nome: **Lewis Hamilton** (L HAMILTON)
+  - Equipa: **Mercedes**
+  - País: **Reino Unido**
+  - ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos trens é de 50 e 252 segundos.
+
+O estado da linha vermelha é **OK**, assim como as linhas amarela, azul e verde.
+
+Sobre o piloto de F1 número 44:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR
+- ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está "Ok".
+
+Sobre o piloto de F1 número 44:
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- [![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. O estado da linha vermelha está Ok.
+
+Quanto ao piloto de F1 número 44:
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Imagem**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+- **Código do País**: GBR
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo. A linha vermelha está em estado "Ok", assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, aqui estão os detalhes:
+
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- Nacionalidade: Reino Unido
+- ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Aqui estão as informações que solicitaste:
+
+- **Tempo de espera na estação CG**: 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+- **Estado da linha vermelha**: Está **ok** (todas as linhas estão operando normalmente).
+- **Informação do piloto de F1 número 44**: 
+  - Nome: Lewis Hamilton
+  - Equipa: Mercedes
+  - País: Grã-Bretanha
+  - ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisares de mais alguma informação, é só avisar!
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+Quanto ao estado da linha, todas as linhas estão em bom estado: 
+- Linha Amarela: Ok
+- Linha Azul: Ok
+- Linha Verde: Ok
+- Linha Vermelha: Ok
+
+Sobre o piloto de F1 número 44:
+- Nome: Lewis Hamilton
+- Equipa: Mercedes
+- Nacionalidade: Britânico
+- ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera para os próximos dois subways é de 50 e 252 segundos. 
+
+O estado da linha vermelha está OK, assim como as linhas amarela, azul e verde.
+
+Quanto ao piloto número 44, Lewis Hamilton, ele compete pela equipe Mercedes e sua imagem é a seguinte:
+
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 e 252 segundos para os próximos dois subways.
+
+O estado da linha vermelha está **OK**.
+
+O piloto de F1 número 44 é **Lewis Hamilton** da equipe Mercedes. Aqui estão os detalhes:
+
+- Nome completo: Lewis Hamilton
+- Acrônimo: HAM
+- País: Grã-Bretanha
+- Cor da equipe: #6CD3BF
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação CG**: 50 segundos para o próximo metro e 252 segundos para o segundo.
+- **Estado da linha vermelha**: Ok.
+  
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **Origem**: GBR (Reino Unido)
+  - ![Headshot](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, os tempos de espera para os próximos dois subways são de 50 e 252 segundos. 
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, aqui estão as informações:
+
+- **Nome Completo:** Lewis Hamilton
+- **Equipe:** Mercedes
+- **Acrônimo:** HAM
+- **País:** Reino Unido (GBR)
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 e 252 segundos para os próximos dois subways. O estado da linha vermelha está "Ok".
+
+Quanto ao piloto de F1 número 44, trata-se de **Lewis Hamilton** da equipe **Mercedes**. Aqui estão algumas informações adicionais:
+
+- Nome: Lewis Hamilton
+- Acrônimo: HAM
+- País: GBR
+- Cor da equipe: #6CD3BF
+- ![Foto do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Em relação à estação de CG, o tempo de espera para os próximos dois subways é de 50 segundos e 252 segundos. Quanto ao estado da linha vermelha, está **Ok**.
+
+Para o piloto de F1 número 44, Lewis Hamilton, aqui está a informação:
+
+- **Nome completo**: Lewis Hamilton
+- **Nome abreviado**: HAM
+- **Equipe**: Mercedes
+- **Cor da equipe**: #6CD3BF
+- **País**: GBR
+- ![Foto do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação CG**: 50 segundos para o próximo trem e 252 segundos para o seguinte.
+- **Estado da linha vermelha**: Ok.
+- **Informação do piloto de F1 número 44**:
+  - Nome: Lewis Hamilton
+  - Equipa: Mercedes
+  - Bandeira: GBR (Reino Unido)
+  - ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+O estado da linha vermelha é "Ok".
+
+Quanto ao piloto de F1 número 44, aqui está a informação:
+
+- **Nome:** Lewis Hamilton
+- **Equipa:** Mercedes
+- **Cores da equipe:** ![Cores](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+- **Código do país:** GBR
+
+Se precisar de mais informações, avise!
+Assistant: Na estação de CG, o tempo de espera para os próximos subways é de 50 segundos e 252 segundos. O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, aqui estão as informações:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR
+- **Acrónimo**: HAM
+- **Cor da Equipa**: #6CD3BF
+- ![Imagem do Piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo.
+
+Quanto ao estado da linha vermelha, está **Ok**.
+
+Sobre o piloto de F1 número 44:
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Código do País**: GBR
+- **Imagem**: ![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação de CG**: 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+  
+- **Estado da linha vermelha**: Ok.
+
+- **Informação do piloto de F1 número 44 (Lewis Hamilton)**:
+  - Nome completo: Lewis Hamilton
+  - Equipe: Mercedes
+  - País: GBR
+  - ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Os tempos de espera na estação de CG são de 50 e 252 segundos. 
+
+Quanto ao estado da linha vermelha, está "Ok".
+
+A informação do piloto de F1 nº 44, Lewis Hamilton, é a seguinte:
+- **Nome**: Lewis Hamilton
+- **Equipe**: Mercedes
+- **Código do País**: GBR
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metro e 252 segundos para o segundo.
+
+O estado da linha vermelha está **Ok**.
+
+Quanto ao piloto de F1 número 44, Lewis Hamilton, ele compete pela equipe Mercedes. Aqui estão os detalhes:
+
+- **Nome completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Cor da equipa**: #6CD3BF
+- **País**: Reino Unido
+- ![Foto de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: - **Tempo de espera na estação CG**: 50 segundos para o próximo metrô e 252 segundos para o segundo.
+- **Estado da linha vermelha**: Ok (linhas amarela, azul, verde e vermelha estão todas operacionais).
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **País**: GBR (Reino Unido)
+  - ![Imagem de Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: 1. **Tempo de espera na estação de CG**: O próximo metrô chega em 50 segundos e o seguinte em 252 segundos.
+
+2. **Estado da linha vermelha**: Ok.
+
+3. **Informação do piloto de F1 número 44**:
+   - Nome completo: Lewis Hamilton
+   - Equipe: Mercedes
+   - País: Reino Unido
+   - ![Imagem](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação de CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o seguinte.
+
+O estado da linha vermelha é: **Ok**.
+
+Sobre o piloto de F1 número 44:
+
+- **Nome**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR
+- ![Imagem do piloto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Na estação CG, o tempo de espera é de 50 segundos para o próximo metrô e 252 segundos para o segundo. 
+
+Quanto à linha vermelha, o seu estado é "Ok". As outras linhas também estão em bom estado: amarela, azul e verde.
+
+Sobre o piloto de F1 número 44:
+
+- **Nome Completo**: Lewis Hamilton
+- **Equipa**: Mercedes
+- **Código do País**: GBR
+![Lewis Hamilton](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+Assistant: Aqui estão as informações solicitadas:
+
+- **Tempo de espera na estação de CG**: 50 segundos para o próximo metro e 252 segundos para o seguinte.
+- **Estado da linha vermelha**: Está "Ok".
+- **Informação do piloto de F1 número 44**:
+  - **Nome**: Lewis Hamilton
+  - **Equipe**: Mercedes
+  - **Código do país**: GBR
+  - ![Foto](https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/1col/image.png)
+
+Se precisar de mais alguma coisa, estou à disposição!
