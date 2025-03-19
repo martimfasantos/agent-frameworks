@@ -33,6 +33,8 @@ Create a `.env` file in the root of the project based on the `.env.example` file
 
 Now, you can run the examples by running each file.
 
+---
+
 ## Agents
 
 Each agent can be run by executing the corresponding file.
@@ -46,6 +48,12 @@ Some flags can be passed to the agents to change their behavior when running ind
 - `--create`: If you want to create an Agent's instance in every iteration. Default is False.
 - `--verbose`: If you want to see the agent's logs and responses. Default is True for Normal mode and False for `metrics` and `metrics-loop` modes.
 - `--file [output file]`: If you want to save the agent's responses to a file. Default is False. (Only needed for `metrics` and `metrics-loop` modes)
+
+
+*Example:*
+```bash
+python llama_index_rag_api_agent.py --mode metrics-loop --iter 30 --create --no-memory --verbose --file tests/test100_llamaindex_rag.txt
+```
 
 ---
 
@@ -64,6 +72,8 @@ We create agents with the following tools:
 
 
 > 💡 Agent Performance metrics are influenced significantly by the system prompts provided to the agents.
+
+---
 
 ### Response Time (with Memory)  
 **Prompt:** _search the web for who won the Champions League final in 2024?_  
